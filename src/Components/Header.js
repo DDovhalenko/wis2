@@ -4,7 +4,7 @@ import "../Styles/Header.css"
 const Header = (props)=>{
     return(
     <header className="header">
-        <h1>Status: {props.loggedInStatus}</h1>
+        <h1>Status: {props.currUser?props.currUser.email:"NotLoggedIn"}</h1>
     </header>
     );
 }

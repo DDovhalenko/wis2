@@ -1,7 +1,9 @@
 import React ,{ useState} from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const SignIn =(props)=>{
+    const history = useNavigate();
     const [email, setEmail]= useState('');
     const [password, setPassword]= useState('');
     const [emailDirty, setEmailDirty]= useState(false);
@@ -44,7 +46,7 @@ const SignIn =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.post("http://localhost:3001/users/sign_in",
+        axios.post("http://localhost:3001/login",
             {
                 user: {
                     email: email,
@@ -55,10 +57,13 @@ const SignIn =(props)=>{
             {withCredentials:true}
             )
             .then(response=>{
-                console.log("registration res", response.data);
-                if(response.data.status === "created"){
-                    props.history("/dashboard");
+                if(response.status===200){
+                    localStorage.setItem("token", response.headers.get("Authorization").replace('Bearer ',''));
+                    props.setCurrUser(response.data);
+                    console.log(props.currUser)
+                    history("/dashboard");
                 }
+                console.log("registration res", response);
             })
             .catch(error=>{
                 console.log("registration error", error);
@@ -71,8 +76,8 @@ const SignIn =(props)=>{
         <div>
             <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
-                {(emailDirty&&emailError)&&<div style={{color:'red'}}>{emailError}</div>}
-                <label for="email">Email</label>
+                <label>Email</label>
+                {(emailDirty&&emailError)&&<label style={{color:'red'}}>{emailError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
                 type="email"
@@ -81,8 +86,8 @@ const SignIn =(props)=>{
                 onChange={e=>emailHandler(e)}
                 required
                 />
-                {(passwordDirty&&passwordError)&&<div style={{color:'red'}}>{passwordError}</div>}
-                <label for="password">Password</label>
+                <label>Password</label>
+                {(passwordDirty&&passwordError)&&<label style={{color:'red'}}>{passwordError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
                 type="password"
@@ -91,9 +96,11 @@ const SignIn =(props)=>{
                 onChange={e=>passwordHandler(e)}
                 required
                 />
-                <button 
-                type="submit"
-                >Log in</button>
+                <div className='buttons'>
+                    <button 
+                    type="submit"
+                    >Log in</button>
+                </div>
             </form>
         </div>
     )

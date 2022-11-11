@@ -41,22 +41,32 @@
     width: 90%;
     height: 30px;
     margin-left: 5%;
-    margin-top: 5px
+    margin-top: 3px
 }
 
 .modal__content form input{
     background-color: #949494;
     color:#ffffff;
+    border-radius:5px ;
+    border:none;
 }
 
 .modal__content form input:focus{
-    border-color:#ffffff ;
+    outline: none;
+}
+
+.modal__content form .buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin:auto;
+
 }
 
 .modal__content form button{
     width: 40%;
     height:30px;
-    margin-top: 5px;
+    margin-top: 20px;
     color:#ffffff;
     background-color: #4A4A4A;
     border: solid 3px #F05757;

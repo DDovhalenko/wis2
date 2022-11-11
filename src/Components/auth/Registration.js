@@ -53,8 +53,8 @@ const Registration =(props)=>{
         if(e.target.value.length<1){
             setPasswordError("Password can`t be empty");
         }
-        else if(e.target.value.length< 3||e.target.value.length>10){
-            setPasswordError("Password might be longer than 3 and shorter than 10");
+        else if(e.target.value.length< 4||e.target.value.length>10){
+            setPasswordError("Might be longer than 3 and shorter than 10");
         }
         else{
             setPasswordError("");
@@ -64,7 +64,7 @@ const Registration =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.post("http://localhost:3001/users",
+        axios.post("http://localhost:3001/signup",
             {
                 user: {
                     email: email,
@@ -75,9 +75,10 @@ const Registration =(props)=>{
             {withCredentials:true}
             )
             .then(response=>{
-                console.log("registration res", response.data);
-                if(response.data.status === "created"){
-                    props.history("/dashboard");
+                console.log("registration res", response);
+                if(response.status===200){
+                    localStorage.setItem('token', response.headers.get("Authorization").replace('Bearer ',''));
+                    props.setCurrUser(response.data)
                 }
             })
             .catch(error=>{
@@ -111,8 +112,8 @@ const Registration =(props)=>{
             <div>{responseText}</div>
             <form onSubmit={handleSubmit}>
                 <h1>Registration</h1>
-                {(emailDirty&&emailError)&&<div style={{color:'red'}}>{emailError}</div>}
-                <label for="email">Email</label>
+                <label>Email</label>
+                {(emailDirty&&emailError)&&<label style={{color:'red'}}>{emailError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
                 type="email"
@@ -121,8 +122,8 @@ const Registration =(props)=>{
                 onChange={e=>emailHandler(e)}
                 required
                 />
-                {(passwordDirty&&passwordError)&&<div style={{color:'red'}}>{passwordError}</div>}
-                <label for="password">Password</label>
+                <label>Password</label>
+                {(passwordDirty&&passwordError)&&<label style={{color:'red'}}>{passwordError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
                 type="password"
@@ -131,14 +132,18 @@ const Registration =(props)=>{
                 onChange={e=>passwordHandler(e)}
                 required
                 />
-                <button 
-                disabled={!formValid}
-                type="submit"
-                >Registrate</button>
+                <div className='buttons'>
+                    <button 
+                    disabled={!formValid}
+                    type="submit"
+                    >Registrate</button>
+
+                    <button 
+                    onClick={deleteHandle}
+                    >Log out</button>
+                </div>
+                
             </form>
-            <button 
-            onClick={deleteHandle}
-            >Log out</button>
         </div>
     )
 }
