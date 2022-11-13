@@ -1,8 +1,8 @@
-import React ,{useEffect, useState} from 'react';
+import React,{useState, useEffect} from "react";
 import axios from 'axios';
+import "../../Styles/student/ProfileForm.css"
 
-const Registration =(props)=>{
-    let responseText="";
+const Profile = (props)=>{
     const [name, setName]= useState('');
     const [surname, setSurname]= useState('');
     const [email, setEmail]= useState('');
@@ -99,38 +99,35 @@ const Registration =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.post("http://localhost:3001/signup",
+        axios.put("http://localhost:3001/update",
             {
                 user: {
-                    name:       name,
-                    surname:    surname,
-                    email:      email,
-                    password:   password
+                    name:               name,
+                    surname:            surname,
+                    email:              email,
+                    current_password:   password
                 }
-                
             },
-            {withCredentials:true}
+            {
+                headers:{'authorization': localStorage.getItem("token")},
+                withCredentials:true
+            }
             )
             .then(response=>{
                 console.log("registration res", response);
                 if(response.status===200){
-                    localStorage.setItem('token', response.headers.get("Authorization").replace('Bearer ',''));
                     props.setCurrUser(response.data)
                 }
             })
             .catch(error=>{
                 console.log("registration error", error);
             })
-
         event.preventDefault();
     }
 
-
     return(
-        <div>
-            <div>{responseText}</div>
-            <form onSubmit={handleSubmit}>
-                <h1>Registration</h1>
+    <div className="profile__content">
+        <form onSubmit={handleSubmit}>
                 <label>Name</label>
                 {(nameDirty&&nameError)&&<label style={{color:'red'}}>{nameError}</label>}
                 <input 
@@ -161,7 +158,7 @@ const Registration =(props)=>{
                 onChange={e=>emailHandler(e)}
                 required
                 />
-                <label>Password</label>
+                <label>Current password</label>
                 {(passwordDirty&&passwordError)&&<label style={{color:'red'}}>{passwordError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
@@ -175,11 +172,11 @@ const Registration =(props)=>{
                     <button 
                     disabled={!formValid}
                     type="submit"
-                    >Registrate</button>
+                    >Apply changes</button>
                 </div>
                 
             </form>
-        </div>
-    )
+    </div>
+    );
 }
-export default Registration
+export default Profile

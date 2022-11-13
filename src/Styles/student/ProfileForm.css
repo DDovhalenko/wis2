@@ -1,0 +1,51 @@
+.profile__content{
+    padding: 20px;
+    border-radius: 12px;
+    width:50vw;
+    background-color: #4A4A4A;
+    opacity:0.9;
+}
+
+.profile__content form{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__content form input,
+.profile__content form label{
+    width: 90%;
+    height: 30px;
+    margin-left: 5%;
+    margin-top: 3px;
+    opacity:1;
+}
+
+.profile__content form input{
+    background-color: #949494;
+    color:#ffffff;
+    border-radius:5px ;
+    border:none;
+}
+
+.profile__content form input:focus{
+    outline: none;
+}
+
+.profile__content form .buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin:auto;
+
+}
+
+.profile__content form button{
+    width: 40%;
+    height:30px;
+    margin-top: 20px;
+    color:#ffffff;
+    background-color: #4A4A4A;
+    border: solid 3px #F05757;
+    border-radius: 5px;
+
+}

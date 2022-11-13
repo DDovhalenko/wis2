@@ -58,7 +58,7 @@ const SignIn =(props)=>{
             )
             .then(response=>{
                 if(response.status===200){
-                    localStorage.setItem("token", response.headers.get("Authorization").replace('Bearer ',''));
+                    localStorage.setItem("token", response.headers.get("Authorization"));
                     props.setCurrUser(response.data);
                     console.log(props.currUser)
                     history("/dashboard");

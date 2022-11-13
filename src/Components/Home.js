@@ -11,7 +11,7 @@ const Home =(props)=>{
     const[registrateModalActive, setRegistrateModalActive] = useState(false);
 
     return (
-        <div className='content'>
+        <div className='content__wrapper'>
             <Sidebar>
                 <button className='open-btn' onClick={()=>setSignInModalActive(true)}>Sign in</button>
                 <button className='open-btn' onClick={()=>setRegistrateModalActive(true)}>Registrate</button>
@@ -19,10 +19,10 @@ const Home =(props)=>{
             <div>
                 <h1>Home</h1>
                 <Modal active={signInModalActive} setActive={setSignInModalActive}>
-                    <SignIn state={props.state} currUser={props.currUser} setCurrUser={props.setCurrUser}></SignIn>
+                    <SignIn currUser={props.currUser} setCurrUser={props.setCurrUser}></SignIn>
                 </Modal>
                 <Modal active={registrateModalActive} setActive={setRegistrateModalActive}>
-                    <Registration state={props.user} setCurrUser={props.setCurrUser}></Registration>
+                    <Registration setCurrUser={props.setCurrUser}></Registration>
                 </Modal>
             </div>
         </div>
