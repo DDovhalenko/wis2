@@ -28,6 +28,7 @@
     opacity:0.9;
     border-radius: 5px;
     border: solid 3px #F05757;
+    cursor: pointer;
 }
 
 .open-btn.active{

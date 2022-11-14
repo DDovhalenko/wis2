@@ -3,49 +3,34 @@ import axios from 'axios';
 import "../../Styles/student/ProfileForm.css"
 
 const Profile = (props)=>{
-    const [name, setName]= useState('');
-    const [surname, setSurname]= useState('');
-    const [email, setEmail]= useState('');
+    const [name, setName]= useState(props.currUser.name);
+    const [surname, setSurname]= useState(props.currUser.surname);
+    const [email, setEmail]= useState(props.currUser.email);
     const [password, setPassword]= useState('');
-    const [nameDirty, setNameDirty]= useState(false);
-    const [surnameDirty, setSurnameDirty]= useState(false);
-    const [emailDirty, setEmailDirty]= useState(false);
     const [passwordDirty, setPasswordDirty]= useState(false);
-    const [nameError, setNameError]= useState('Name can`t be empty');
-    const [surnameError, setSurnameError]= useState('Surname can`t be empty');
-    const [emailError, setEmailError]= useState('Email can`t be empty');
+    const [nameError, setNameError]= useState('');
+    const [surnameError, setSurnameError]= useState('');
+    const [emailError, setEmailError]= useState('');
     const [passwordError, setPasswordError]= useState('Password can`t be empty');
     const [formValid, setFormValid]= useState(false);
+    const [formPasswordValid, setFormPasswordValid]= useState(false);
 
     useEffect(()=>{
-        if(nameError||surnameError||emailError||passwordError){
+        if(nameError||surnameError||emailError){
             setFormValid(false);
         }
         else{
             setFormValid(true);
         }
+        if(passwordError){
+            setFormPasswordValid(false);
+        }
+        else{setFormPasswordValid(true);}
     },[nameError,surnameError,emailError,passwordError]);
 
     const blurHandler = (e)=>{
-        switch(e.target.name){
-            case 'name':
-                setNameDirty(true);
-                break;
-                case 'surname':
-                setSurnameDirty(true);
-                break;
-            case 'email':
-                setEmailDirty(true);
-                break;
-            case 'password':
-                setPasswordDirty(true);
-                break;
-            default:
-                break;
-        }
+        setPasswordDirty(true);
     }
-
-    
     const nameHandler=(e)=>{
         setName(e.target.value);
         if(e.target.value.length<1){
@@ -53,7 +38,6 @@ const Profile = (props)=>{
         }
         else{
             setNameError("");
-            setNameDirty(false);
         }
     }
 
@@ -64,7 +48,6 @@ const Profile = (props)=>{
         }
         else{
             setSurnameError("");
-            setSurnameDirty(false);
         }
     }
 
@@ -79,7 +62,6 @@ const Profile = (props)=>{
         }
         else{
             setEmailError("");
-            setEmailDirty(false);
         }
     }
 
@@ -104,8 +86,7 @@ const Profile = (props)=>{
                 user: {
                     name:               name,
                     surname:            surname,
-                    email:              email,
-                    current_password:   password
+                    email:              email
                 }
             },
             {
@@ -125,13 +106,33 @@ const Profile = (props)=>{
         event.preventDefault();
     }
 
+    const handlePasswordSubmit=(event)=>{
+        axios.put("http://localhost:3001/passupdate",
+            {
+                user: {
+                    password:   password
+                }
+            },
+            {
+                headers:{'authorization': localStorage.getItem("token")},
+                withCredentials:true
+            }
+            )
+            .then(response=>{
+                console.log("response", response);
+            })
+            .catch(error=>{
+                console.log("error", error);
+            })
+        event.preventDefault();
+    }
+
     return(
     <div className="profile__content">
         <form onSubmit={handleSubmit}>
                 <label>Name</label>
-                {(nameDirty&&nameError)&&<label style={{color:'red'}}>{nameError}</label>}
+                {(nameError)&&<label style={{color:'red'}}>{nameError}</label>}
                 <input 
-                onBlur = {e=>blurHandler(e)}
                 type="name"
                 name="name"
                 value = {name}
@@ -139,9 +140,8 @@ const Profile = (props)=>{
                 required
                 />
                 <label>Surname</label>
-                {(surnameDirty&&surnameError)&&<label style={{color:'red'}}>{surnameError}</label>}
+                {(surnameError)&&<label style={{color:'red'}}>{surnameError}</label>}
                 <input 
-                onBlur = {e=>blurHandler(e)}
                 type="surname"
                 name="surname"
                 value = {surname}
@@ -149,16 +149,24 @@ const Profile = (props)=>{
                 required
                 />
                 <label>Email</label>
-                {(emailDirty&&emailError)&&<label style={{color:'red'}}>{emailError}</label>}
+                {(emailError)&&<label style={{color:'red'}}>{emailError}</label>}
                 <input 
-                onBlur = {e=>blurHandler(e)}
                 type="email"
                 name="email"
                 value = {email}
                 onChange={e=>emailHandler(e)}
                 required
                 />
-                <label>Current password</label>
+                <div className='buttons'>
+                    <button 
+                    disabled={!formValid}
+                    type="submit"
+                    >Apply changes</button>
+                </div>
+                
+            </form>
+            <form onSubmit={handlePasswordSubmit}>
+            <label>New password</label>
                 {(passwordDirty&&passwordError)&&<label style={{color:'red'}}>{passwordError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
@@ -170,11 +178,10 @@ const Profile = (props)=>{
                 />
                 <div className='buttons'>
                     <button 
-                    disabled={!formValid}
+                    disabled={!formPasswordValid}
                     type="submit"
                     >Apply changes</button>
                 </div>
-                
             </form>
     </div>
     );

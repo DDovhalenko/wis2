@@ -48,7 +48,7 @@ function Dashboard (props){
             </Sidebar>
             <div>
                 <h1>Dashboard</h1>
-                <Content active={active} setCurrUser={props.setCurrUser}></Content>
+                <Content active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></Content>
             </div>
         </div>
     );

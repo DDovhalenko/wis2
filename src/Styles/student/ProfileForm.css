@@ -47,5 +47,11 @@
     background-color: #4A4A4A;
     border: solid 3px #F05757;
     border-radius: 5px;
+    opacity: 1;
+    cursor: pointer;
+}
 
+.profile__content form button:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
 }

@@ -19,7 +19,7 @@ const App =()=> {
         <Routes>
           <Route exact path={"/"} element={<Home currUser={currUser} setCurrUser={setCurrUser} />}/>
           <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
-            <Route exact path={"/dashboard"} element={<Dashboard setCurrUser={setCurrUser}/>}/>
+            <Route exact path={"/dashboard"} element={<Dashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

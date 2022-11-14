@@ -6,7 +6,7 @@ import Study from './Study';
 const Content = (props)=>{
     switch (props.active){
         case "1":
-            return(<Profile setCurrUser={props.setCurrUser}></Profile>);
+            return(<Profile currUser={props.currUser} setCurrUser={props.setCurrUser}></Profile>);
         
         case "2":
             return(<Study></Study>);
