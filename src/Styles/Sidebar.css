@@ -1,0 +1,37 @@
+.sidebar{
+    width: 300px;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar__content{
+    width: 260px; 
+    height:90%;
+    background-color: #4A4A4A;
+    opacity:0.9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.open-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#ffffff;
+    margin-top: 20px;
+    font-size: 14px;
+    width:200px;
+    height: 34px;
+    background-color: #4A4A4A;
+    opacity:0.9;
+    border-radius: 5px;
+    border: solid 3px #F05757;
+    cursor: pointer;
+}
+
+.open-btn.active{
+    background-color: #B74545;
+    opacity: 1;
+}
