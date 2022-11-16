@@ -8,8 +8,8 @@ const SignIn =(props)=>{
     const [password, setPassword]= useState('');
     const [emailDirty, setEmailDirty]= useState(false);
     const [passwordDirty, setPasswordDirty]= useState(false);
-    const [emailError, setEmailError]= useState('Email can`t be empty');
-    const [passwordError, setPasswordError]= useState('Password can`t be empty');
+    const [emailError, setEmailError]= useState("Email can't be empty");
+    const [passwordError, setPasswordError]= useState("Password can't be empty");
 
     const blurHandler = (e)=>{
         switch(e.target.name){
@@ -27,7 +27,7 @@ const SignIn =(props)=>{
     const emailHandler = (e)=>{
         setEmail(e.target.value);
         if(e.target.value.length<1){
-            setEmailError("Email can`t be empty");
+            setEmailError("Email can't be empty");
         }
         else{
             setEmailError("");
@@ -37,7 +37,7 @@ const SignIn =(props)=>{
     const passwordHandler=(e)=>{
         setPassword(e.target.value);
         if(e.target.value.length<1){
-            setPasswordError("Password can`t be empty");
+            setPasswordError("Password can't be empty");
         }
         else{
             setPasswordError("");
@@ -45,7 +45,7 @@ const SignIn =(props)=>{
     }
 
     const handleSubmit=(event)=>{
-        console.log("submiterd");
+        console.log("submited");
         axios.post("http://localhost:3001/login",
             {
                 user: {

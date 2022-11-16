@@ -11,10 +11,10 @@ const Registration =(props)=>{
     const [surnameDirty, setSurnameDirty]= useState(false);
     const [emailDirty, setEmailDirty]= useState(false);
     const [passwordDirty, setPasswordDirty]= useState(false);
-    const [nameError, setNameError]= useState('Name can\'t be empty');
-    const [surnameError, setSurnameError]= useState('Surname can`t be empty');
-    const [emailError, setEmailError]= useState('Email can\'t be empty');
-    const [passwordError, setPasswordError]= useState('Password can`t be empty');
+    const [nameError, setNameError]= useState("Name can't be empty");
+    const [surnameError, setSurnameError]= useState("Surname can't be empty");
+    const [emailError, setEmailError]= useState("Email can't be empty");
+    const [passwordError, setPasswordError]= useState("Password can't be empty");
     const [formValid, setFormValid]= useState(false);
 
     useEffect(()=>{
