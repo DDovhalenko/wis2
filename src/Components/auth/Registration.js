@@ -99,7 +99,7 @@ const Registration =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.post("http://localhost:3001/signup",
+        axios.post("https://wis2backend.vercel.app/signup",
             {
                 user: {
                     name:       name,
