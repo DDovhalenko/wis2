@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Dashboard from "./Components/student/Dashboard";
 import ProtectedRoute from './Components/auth/ProtectedRoute';
 import "./Styles/App.css"
+import Test from './Components/Test';
 
 const App =()=> {
 
@@ -21,6 +22,7 @@ const App =()=> {
           <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
             <Route exact path={"/dashboard"} element={<Dashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
           </Route>
+          <Route exact path={"/test"} element={<Test currUser={currUser} setCurrUser={setCurrUser} />}/>
         </Routes>
       </BrowserRouter>
     </div>

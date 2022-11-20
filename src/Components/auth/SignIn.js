@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 const SignIn =(props)=>{
-    const history = useNavigate();
+    const navigate = useNavigate();
     const [email, setEmail]= useState('');
     const [password, setPassword]= useState('');
     const [emailDirty, setEmailDirty]= useState(false);
@@ -46,7 +46,7 @@ const SignIn =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.post("http://localhost:3001/login",
+        axios.post("http://wis2backend.vercel.app/login",
             {
                 user: {
                     email: email,
@@ -58,10 +58,10 @@ const SignIn =(props)=>{
             )
             .then(response=>{
                 if(response.status===200){
-                    localStorage.setItem("token", response.headers.get("Authorization"));
-                    props.setCurrUser(response.data);
+                    localStorage.setItem("token", response.data.token);
+                    props.setCurrUser(response.data.user);
                     console.log(props.currUser)
-                    history("/dashboard");
+                    navigate("/test");
                 }
                 console.log("registration res", response);
             })

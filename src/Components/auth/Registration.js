@@ -99,7 +99,7 @@ const Registration =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.post("http://localhost:3001/signup",
+        axios.post("https://wis2backend.vercel.app/signup",
             {
                 user: {
                     name:       name,
@@ -108,14 +108,13 @@ const Registration =(props)=>{
                     password:   password
                 }
                 
-            },
-            {withCredentials:true}
+            }
             )
             .then(response=>{
                 console.log("registration res", response);
                 if(response.status===200){
-                    localStorage.setItem('token', response.headers.get("Authorization").replace('Bearer ',''));
-                    props.setCurrUser(response.data)
+                    localStorage.setItem('token', response.data.token);
+                    props.setCurrUser(response.data.user)
                 }
             })
             .catch(error=>{
