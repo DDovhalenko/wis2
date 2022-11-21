@@ -81,7 +81,7 @@ const Profile = (props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.put("http://localhost:3001/update",
+        axios.put("https://wis2back.herokuapp.com/update",
             {
                 user: {
                     name:               name,

@@ -1,16 +1,15 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import Content from './Content'
+import Content from './Content';
 
-
-
-function Dashboard (props){
+function TeacherDashboard (props){
     const [active, setActive] = useState("");
 
     const handleClick = (event) => {
         setActive(event.target.id);
       }
+
     const handleLogOut = ()=>{
         console.log("logout");
         axios.delete("https://wis2back.herokuapp.com/logout",
@@ -29,8 +28,7 @@ function Dashboard (props){
             })
             .catch(error=>{
                 console.log("logout error", error);
-            })
-
+        })
     }
     return( 
         <div className='content__wrapper'>
@@ -38,19 +36,11 @@ function Dashboard (props){
                 <button id={"1"} className={active==="1"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Upravit profil</button>
                 <button id={"2"} className={active==="2"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Přehled studia</button>
-                <button id={"3"} className={active==="3"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Rozvrh</button>
-                <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Registrace kurzů</button>
-                <button id={"5"} className={active==="5"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Registrace terminu</button>
-                <button id={"6"} className={active==="6"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Založit kurz</button>
-                <button id={"7"} className={active==="7"?"open-btn active":"open-btn"}
+                <button id={"3"} className={active==="3"?"open-btn active":"open-btn"}
+                    onClick={(e)=>{handleClick(e);}}>Seznam kurzů</button>
+                <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
-                <button id={"8"} className={active==="8"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Vytvořit termín</button>
             </Sidebar>
             <div>
                 <h1>Dashboard</h1>
@@ -59,4 +49,4 @@ function Dashboard (props){
         </div>
     );
 };
-export default Dashboard;
+export default TeacherDashboard;

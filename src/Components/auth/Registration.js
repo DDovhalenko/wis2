@@ -99,7 +99,7 @@ const Registration =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submited");
-        axios.post("http://localhost:3001/signup",
+        axios.post("https://wis2back.herokuapp.com/signup",
             {
                 user: {
                     name:       name,
@@ -114,7 +114,7 @@ const Registration =(props)=>{
             .then(response=>{
                 console.log("registration res", response);
                 if(response.status===200){
-                    localStorage.setItem('token', response.headers.get("Authorization").replace('Bearer ',''));
+                    localStorage.setItem('token', response.data.token);
                     props.setCurrUser(response.data)
                 }
             })

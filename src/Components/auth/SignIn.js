@@ -46,7 +46,7 @@ const SignIn =(props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submited");
-        axios.post("http://localhost:3001/login",
+        axios.post("https://wis2back.herokuapp.com/login",
             {
                 user: {
                     email: email,
@@ -58,10 +58,10 @@ const SignIn =(props)=>{
             )
             .then(response=>{
                 if(response.status===200){
-                    localStorage.setItem("token", response.headers.get("Authorization"));
-                    props.setCurrUser(response.data);
+                    localStorage.setItem("token", response.data.token);
+                    props.setCurrUser(response.data.user);
                     console.log(props.currUser)
-                    history("/dashboard");
+                    history("/teacher");
                 }
                 console.log("registration res", response);
             })
