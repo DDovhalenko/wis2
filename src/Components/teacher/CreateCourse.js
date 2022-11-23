@@ -33,9 +33,7 @@ const CreateCourse = (props)=>{
         .catch(error=>{
             console.log("error", error);
         })
-
         //e.target.reset();
-        
     }
 
     const onlyNumbers = (e)=>{

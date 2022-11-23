@@ -3,25 +3,54 @@ import axios from 'axios';
 import "../../Styles/teacher/CreateTerm.css"
 import { useParams } from "react-router";
 
-const CreateTerm = (props)=>{
+const CreateTerm = (props) => {
     const {id} = useParams();
-    const clearId = id.replace(":", "");
-    const handleSubmit=(e)=>{
+    const cleanId = id.replace(":", "");
+    const [rooms, setRooms] = useState([]);
+
+    const getRooms = async function() {
+
+        /*
+        await axios.post("https://wis2back.herokuapp.com/rooms",
+        {
+            name:"E112"
+        },
+        {
+            headers:{'authorization': localStorage.getItem("token")},
+            withCredentials:true
+        }
+        )*/
+        const response = await axios.get("https://wis2back.herokuapp.com/rooms",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
+        const data = response.data;
+        setRooms([])
+        for(let i=0;i<data.length;i++){
+            setRooms(rooms => [...rooms, data[i].name]);
+        }
+
+
+    }
+    useEffect(() => {
+        getRooms();
+    }, [])
+
+
+    const handleSubmit = async function(e){
         e.preventDefault();
 
-
-        //console.log(clearId);
-
-        axios.post("https://wis2back.herokuapp.com/terms",
+        const resp = await axios.post("https://wis2back.herokuapp.com/terms",
         {
+            course:{
+                id: cleanId,
+            },
             term:{
                 term_type: e.target.termType.value,
                 date: e.target.termDate.value,
                 time_start: e.target.termTimeStart.value,
                 time_end: e.target.termTimeEnd.value,
                 limit: e.target.termLimit.value,
-                room: e.target.termRoom.value,
-
+            },
+            room:{
+                name:e.target.termRoom.value
             }
         },
         {
@@ -29,12 +58,22 @@ const CreateTerm = (props)=>{
             withCredentials:true
         }
         )
-        .then(response=>{
-            console.log("response", response);
-        })
-        .catch(error=>{
-            console.log("error", error);
-        })
+        console.log(resp);
+        /*
+        axios.post("https://wis2back.herokuapp.com/rooms",
+        {
+            room:{
+                name: "D105"
+            }
+        },
+        {
+            headers:{'authorization': localStorage.getItem("token")},
+            withCredentials:true
+        }
+        )*/
+        //const a = await axios.get("https://wis2back.herokuapp.com/rooms",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
+        //console.log(a);
+
 
     }
 
@@ -52,7 +91,9 @@ const CreateTerm = (props)=>{
                 <input type="time" id="termTimeStart" name="termTimeStart" required></input>
                 <input type="time" id="termTimeEnd" name="termTimeEnd" required></input>
                 <input type="text" id="termLimit" name="termLimit" placeholder="limit" onKeyPress={e => onlyNumbers(e)}></input>
-                <input type="text" id="termRoom" name="termRoom" placeholder="místnost" required></input>
+                <select name="termRoom" id="termRoom">
+                    {rooms.map((room) => <option>{room}</option>)}
+                </select>
                 <button type="submit">Vytvořit termín</button>
             </form>
         </div>
