@@ -1,0 +1,29 @@
+
+table{
+    width: 50%;
+    table-layout: fixed;
+    background-color: #4A4A4A;
+    opacity: 0.9;
+    border-radius: 20px;
+    border: solid 3px #F05757;
+    padding: 10px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+h1{
+    background-color: #4A4A4A;
+    opacity: 0.9;
+    border: solid 3px #F05757;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    margin-left: 50px;
+
+    
+}
+
+p{
+    background-color: #4A4A4A;
+    opacity: 0.9;
+}

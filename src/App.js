@@ -2,14 +2,12 @@ import React,{useState} from 'react';
 import {BrowserRouter,Routes, Route} from "react-router-dom";
 import Header from './Components/Header';
 import Home from "./Components/Home";
-import Dashboard from "./Components/student/Dashboard";
 import ProtectedRoute from './Components/auth/ProtectedRoute';
 import "./Styles/App.css"
-import TeacherDashboard from './Components/teacher/TeacherDashboard';
-import CourseDetails from './Components/teacher/CourseDetails';
-import CourseDashboard from './Components/teacher/CourseDashboard';
-import AdminDashboard from './Components/admin/AdminDashboard';
-
+import TeacherDashboard from './Components/teacher/Dashboard';
+import StudentDashboard from './Components/student/Dashboard';
+import AdminDashboard from './Components/admin/Dashboard';
+import CourseDashboard from './Components/teacher/course/Dashboard';
 
 const App =()=> {
 
@@ -24,12 +22,12 @@ const App =()=> {
         <Routes>
           <Route exact path={"/"} element={<Home currUser={currUser} setCurrUser={setCurrUser} />}/>
           <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
-            <Route exact path={"/dashboard"} element={<Dashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
+            <Route exact path={"/student"} element={<StudentDashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
           </Route>
-          <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
+          <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="teacher"} />}>
             <Route exact path={"/teacher"} element={<TeacherDashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
           </Route>
-          <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
+          <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="admin"} />}>
             <Route exact path={"/admin"} element={<AdminDashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
           </Route>
           <Route path="teacher/course:id" element={<CourseDashboard/>}/>

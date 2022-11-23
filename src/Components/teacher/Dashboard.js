@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import CourseContent from './CourseContent';
+import { useNavigate } from 'react-router';
+import DashboardControl from './DashboardControl';
 
-function CourseDashboard (props){
+function Dashboard (props){
     const [active, setActive] = useState("");
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         setActive(event.target.id);
@@ -29,21 +31,27 @@ function CourseDashboard (props){
             .catch(error=>{
                 console.log("logout error", error);
         })
+
+        navigate("/")
     }
+    
     return( 
         <div className='content__wrapper'>
             <Sidebar>
                 <button id={"1"} className={active==="1"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Podrobnosti</button>
+                    onClick={(e)=>{handleClick(e);}}>Upravit profil</button>
                 <button id={"2"} className={active==="2"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Termíny</button>
+                    onClick={(e)=>{handleClick(e);}}>Založit kurz</button>
                 <button id={"3"} className={active==="3"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Zpět</button>
+                    onClick={(e)=>{handleClick(e);}}>Seznam kurzů</button>
+                <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
+                    onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
             </Sidebar>
             <div>
-                <CourseContent active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></CourseContent>
+                <h1>Dashboard</h1>
+                <DashboardControl active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></DashboardControl>
             </div>
         </div>
     );
 };
-export default CourseDashboard;
+export default Dashboard;

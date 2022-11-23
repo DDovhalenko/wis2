@@ -45,7 +45,7 @@ const SignIn =(props)=>{
     }
 
     const handleSubmit=(event)=>{
-        console.log("submited");
+        //console.log("submited");
         axios.post("https://wis2back.herokuapp.com/login",
             {
                 user: {
@@ -60,8 +60,17 @@ const SignIn =(props)=>{
                 if(response.status===200){
                     localStorage.setItem("token", response.data.token);
                     props.setCurrUser(response.data.user);
-                    console.log(props.currUser)
-                    history("/teacher");
+                    //console.log(props.currUser)
+                    
+                    if(response.data.user.role==="teacher"){
+                        history("/teacher");
+                    }
+                    else if(response.data.user.role==="student"){
+                        history("/student");
+                    }
+                    else if(response.data.user.role==="admin"){
+                        history("/admin");
+                    }
                 }
                 console.log("registration res", response);
             })

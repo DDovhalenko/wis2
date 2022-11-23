@@ -1,23 +1,26 @@
 import react, {useState, useEffect} from 'react';
-import {BrowserRouter,Routes, Route, useNavigate} from "react-router-dom";
 import axios from 'axios';
-import Modal from '../modal/Modal';
+import Modal from '../../../modal/Modal';
 import CreateTerm from './CreateTerm';
 import { useParams } from 'react-router-dom';
 
-const TermList =()=> {
+const ListTerms =()=> {
     const {id} = useParams();
     const cleanId = id.replace(":", "");
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const [terms, setTerms] = useState([]);
 
     const [addTermModalActive, setAddTermModalActive] = useState(false);
 
     useEffect(() => {
         const getCourses = async function() {
-            const response = await axios.get("https://wis2back.herokuapp.com/terms",
-
+            const response = await axios.post("https://wis2back.herokuapp.com/showterms",
+            {
+                course:{
+                    id: cleanId,
+                }
+            },
             {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
             const data = response.data;
             console.log("term list kokot", response);
@@ -28,7 +31,7 @@ const TermList =()=> {
 
 
     const deleteTerm = (props) =>{
-        console.log(props);
+        console.log("Missing delete request");
         /*
         const response = await axios.delete("https://wis2back.herokuapp.com/terms/"+id,
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
@@ -70,4 +73,4 @@ const TermList =()=> {
     )
 
 }
-export default TermList
+export default ListTerms

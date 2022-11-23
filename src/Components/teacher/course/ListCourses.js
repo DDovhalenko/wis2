@@ -1,14 +1,12 @@
 import react, { useEffect, useState} from 'react';
-import "../../Styles/teacher/teacher.css"
+//import "../../Styles/teacher/teacher.css"
 import axios from 'axios';
-import CourseDetails from './CourseDetails';
-import {BrowserRouter,Routes, Route, withRouter, useNavigate, Navigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import UpdateCourse from './UpdateCourse';
-import Modal from '../modal/Modal';
-import CourseDashboard from './CourseDashboard';
+import Modal from '../../modal/Modal';
 
 
-const CourseList = () => {
+const ListCourses = () => {
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
     const [updateCourseActive, setUpdateCourseModalActive] = useState(false);
@@ -62,7 +60,7 @@ const CourseList = () => {
 
 }
 
-export default CourseList
+export default ListCourses
 
 /*
 

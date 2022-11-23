@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from "react";
 import axios from 'axios';
-import "../../Styles/teacher/CreateTerm.css"
+//import "../../../Styles/teacher/CreateTerm.css"
 import { useParams } from "react-router";
 
 const CreateTerm = (props) => {
@@ -9,17 +9,6 @@ const CreateTerm = (props) => {
     const [rooms, setRooms] = useState([]);
 
     const getRooms = async function() {
-
-        /*
-        await axios.post("https://wis2back.herokuapp.com/rooms",
-        {
-            name:"E112"
-        },
-        {
-            headers:{'authorization': localStorage.getItem("token")},
-            withCredentials:true
-        }
-        )*/
         const response = await axios.get("https://wis2back.herokuapp.com/rooms",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
         setRooms([])

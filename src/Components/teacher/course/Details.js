@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 
-const CourseDetails = (props)=>{
+const Details = (props)=>{
     const [course, setCourse] = useState([]);
     const {id} = useParams();
     const clearId = id.replace(":", "");
@@ -27,4 +27,4 @@ const CourseDetails = (props)=>{
     )
 
 }
-export default CourseDetails;
+export default Details;
