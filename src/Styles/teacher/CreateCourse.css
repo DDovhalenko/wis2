@@ -1,0 +1,107 @@
+.createCourse{
+    padding: 20px;
+    border-radius: 12px;
+    width:50vw;
+    background-color: #4A4A4A;
+    opacity:0.9;
+}
+
+.createCourse form{
+    display: flex;
+    flex-direction: column;
+}
+
+.createCourse form input,
+.createCourse form label{
+    width: 90%;
+    height: 30px;
+    margin-left: 5%;
+    margin-top: 3px;
+    opacity:1;
+}
+
+.createCourse form input{
+    background-color: #949494;
+    color:#ffffff;
+    border-radius:5px ;
+    border:none;
+}
+
+.createCourse form input:focus{
+    outline: none;
+}
+
+.createCourse form div{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+
+
+.createCourse form .buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin:auto;
+
+}
+
+.createCourse form button[class=deleteAppo]{
+    width: 50%;
+    height: 30px;
+    margin-top: 3px;
+    margin-left: 10px;
+    color:#ffffff;
+    background-color: #4A4A4A;
+    border: solid 3px #F05757;
+    border-radius: 5px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.createCourse form table{
+    width: 95%;
+    margin: auto;
+}
+
+
+.createCourse form button{
+    width: 40%;
+    height:30px;
+    margin-top: 20px;
+    color:#ffffff;
+    background-color: #4A4A4A;
+    border: solid 3px #F05757;
+    border-radius: 5px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.createCourse form button:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+}
+
+
+.popup-content {
+    background: black;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    display: none;
+
+}
+
+[data-popup='tooltip'].popup-overlay {
+    background: transparent;
+}

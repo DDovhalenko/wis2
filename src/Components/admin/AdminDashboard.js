@@ -1,11 +1,9 @@
-import React,{useState} from 'react';
+import react, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import Content from './Content'
+import AdminContent from './AdminContent';
 
-
-
-function Dashboard (props){
+const AdminDashboard = (props) => {
     const [active, setActive] = useState("");
 
     const handleClick = (event) => {
@@ -29,34 +27,29 @@ function Dashboard (props){
             })
             .catch(error=>{
                 console.log("logout error", error);
-            })
-
+        })
     }
+    
     return( 
         <div className='content__wrapper'>
             <Sidebar>
                 <button id={"1"} className={active==="1"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Upravit profil</button>
                 <button id={"2"} className={active==="2"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Přehled studia</button>
+                    onClick={(e)=>{handleClick(e);}}>Uživatelé</button>
                 <button id={"3"} className={active==="3"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Rozvrh</button>
+                    onClick={(e)=>{handleClick(e);}}>Místnosti</button>
                 <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Registrace kurzů</button>
+                    onClick={(e)=>{handleClick(e);}}>Statistiky</button>
                 <button id={"5"} className={active==="5"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Registrace terminu</button>
-                <button id={"6"} className={active==="6"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Založit kurz</button>
-                <button id={"7"} className={active==="7"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
-                <button id={"8"} className={active==="8"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Vytvořit termín</button>
             </Sidebar>
             <div>
                 <h1>Dashboard</h1>
-                <Content active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></Content>
+                <AdminContent active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></AdminContent>
             </div>
         </div>
     );
-};
-export default Dashboard;
+}
+
+export default AdminDashboard

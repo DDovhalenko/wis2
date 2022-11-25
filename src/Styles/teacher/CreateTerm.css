@@ -1,0 +1,84 @@
+.createTerm{
+    padding: 20px;
+    border-radius: 12px;
+    width:50vw;
+    background-color: #4A4A4A;
+    opacity:0.9;
+}
+
+.createTerm form{
+    display: flex;
+    flex-direction: column;
+}
+
+.createTerm form input,
+.createTerm form label{
+    width: 90%;
+    height: 30px;
+    margin-left: 5%;
+    margin-top: 3px;
+    opacity:1;
+}
+
+.createTerm form input{
+    background-color: #949494;
+    color:#ffffff;
+    border-radius:5px ;
+    border:none;
+}
+
+.createTerm form input:focus{
+    outline: none;
+}
+
+.createTerm form div{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+
+
+.createTerm form .buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin:auto;
+
+}
+
+.createTerm form button[class=deleteAppo]{
+    width: 50%;
+    height: 30px;
+    margin-top: 3px;
+    margin-left: 10px;
+    color:#ffffff;
+    background-color: #4A4A4A;
+    border: solid 3px #F05757;
+    border-radius: 5px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.createTerm form table{
+    width: 95%;
+    margin: auto;
+}
+
+
+.createTerm form button{
+    width: 40%;
+    height:30px;
+    margin-top: 20px;
+    color:#ffffff;
+    background-color: #4A4A4A;
+    border: solid 3px #F05757;
+    border-radius: 5px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.createTerm form button:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+}

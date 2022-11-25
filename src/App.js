@@ -5,6 +5,11 @@ import Home from "./Components/Home";
 import Dashboard from "./Components/student/Dashboard";
 import ProtectedRoute from './Components/auth/ProtectedRoute';
 import "./Styles/App.css"
+import TeacherDashboard from './Components/teacher/TeacherDashboard';
+import CourseDetails from './Components/teacher/CourseDetails';
+import CourseDashboard from './Components/teacher/CourseDashboard';
+import AdminDashboard from './Components/admin/AdminDashboard';
+
 
 const App =()=> {
 
@@ -21,9 +26,24 @@ const App =()=> {
           <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
             <Route exact path={"/dashboard"} element={<Dashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
           </Route>
+          <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
+            <Route exact path={"/teacher"} element={<TeacherDashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
+          </Route>
+          <Route element={<ProtectedRoute isAllowed={!!currUser&&currUser.role==="student"} />}>
+            <Route exact path={"/admin"} element={<AdminDashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
+          </Route>
+          <Route path="teacher/course:id" element={<CourseDashboard/>}/>
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
 export default App
+
+/*
+          <Route exact path="/teacher" element={<TeacherDashboard/>}/>
+
+
+
+
+ */
