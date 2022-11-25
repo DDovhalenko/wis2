@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import Content from './Content';
+import { useNavigate } from 'react-router';
+import DashboardControl from './DashboardControl';
 
-function TeacherDashboard (props){
+function Dashboard (props){
     const [active, setActive] = useState("");
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         setActive(event.target.id);
@@ -29,6 +31,8 @@ function TeacherDashboard (props){
             .catch(error=>{
                 console.log("logout error", error);
         })
+
+        navigate("/")
     }
     
     return( 
@@ -44,10 +48,9 @@ function TeacherDashboard (props){
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
             </Sidebar>
             <div>
-                <h1>Dashboard</h1>
-                <Content active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></Content>
+                <DashboardControl active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></DashboardControl>
             </div>
         </div>
     );
 };
-export default TeacherDashboard;
+export default Dashboard;

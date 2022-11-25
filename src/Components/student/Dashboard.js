@@ -1,12 +1,12 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
-import Content from './Content'
-
-
+import DashboardControl from './DashboardControl';
+import { useNavigate } from 'react-router';
 
 function Dashboard (props){
     const [active, setActive] = useState("");
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         setActive(event.target.id);
@@ -30,6 +30,8 @@ function Dashboard (props){
             .catch(error=>{
                 console.log("logout error", error);
             })
+        navigate("/")
+
 
     }
     return( 
@@ -40,21 +42,14 @@ function Dashboard (props){
                 <button id={"2"} className={active==="2"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Přehled studia</button>
                 <button id={"3"} className={active==="3"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Rozvrh</button>
+                    onClick={(e)=>{handleClick(e);}}>Registrované termíny</button>
                 <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Registrace kurzů</button>
                 <button id={"5"} className={active==="5"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Registrace terminu</button>
-                <button id={"6"} className={active==="6"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Založit kurz</button>
-                <button id={"7"} className={active==="7"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
-                <button id={"8"} className={active==="8"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Vytvořit termín</button>
             </Sidebar>
             <div>
-                <h1>Dashboard</h1>
-                <Content active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></Content>
+                <DashboardControl active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></DashboardControl>
             </div>
         </div>
     );
