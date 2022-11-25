@@ -44,9 +44,6 @@ const UpdateCourse = (props) => {
           }
     }
 
-    const reset = (e)=>{
-        console.log("reset");
-    }
 
     return(
         <div className="createCourse">

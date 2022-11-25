@@ -46,8 +46,6 @@ const Dashboard = (props) => {
                 <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Kurzy</button>
                 <button id={"5"} className={active==="5"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Statistiky</button>
-                <button id={"6"} className={active==="6"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
             </Sidebar>
             <div>

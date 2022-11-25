@@ -42,12 +42,10 @@ function Dashboard (props){
                 <button id={"2"} className={active==="2"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Přehled studia</button>
                 <button id={"3"} className={active==="3"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Rozvrh</button>
+                    onClick={(e)=>{handleClick(e);}}>Registrované termíny</button>
                 <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Registrace kurzů</button>
                 <button id={"5"} className={active==="5"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Založit kurz</button>
-                <button id={"6"} className={active==="6"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
             </Sidebar>
             <div>

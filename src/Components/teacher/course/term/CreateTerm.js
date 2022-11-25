@@ -26,6 +26,8 @@ const CreateTerm = (props) => {
     const handleSubmit = async function(e){
         e.preventDefault();
 
+
+        console.log("Sent request to create term");
         const resp = await axios.post("https://wis2back.herokuapp.com/terms",
         {
             course:{
@@ -47,7 +49,7 @@ const CreateTerm = (props) => {
             withCredentials:true
         }
         )
-        console.log(resp);
+        console.log("Response from create term", resp);
         /*
         axios.post("https://wis2back.herokuapp.com/rooms",
         {

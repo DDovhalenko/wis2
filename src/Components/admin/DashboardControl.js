@@ -19,9 +19,6 @@ const DashboardControl = (props)=>{
         case "4":
             //přehled kurzů
             return(<ListCourses></ListCourses>);
-        case "5":
-            //statistiky
-            return(<Statistics></Statistics>);
         default:
     }
 }

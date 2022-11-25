@@ -31,6 +31,7 @@ const App =()=> {
             <Route exact path={"/admin"} element={<AdminDashboard currUser={currUser} setCurrUser={setCurrUser}/>}/>
           </Route>
           <Route path="teacher/course:id" element={<CourseDashboard/>}/>
+          <Route path="student/course:id" element={<CourseDashboard/>}/>
         </Routes>
       </BrowserRouter>
     </div>
