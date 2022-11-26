@@ -1,11 +1,12 @@
-import React,{useState} from 'react';
+import react, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
 import DashboardControl from './DashboardControl';
 import { useNavigate } from 'react-router';
 
-function Dashboard (props){
+const Dashboard = (props) => {
     const [active, setActive] = useState("");
+
     const navigate = useNavigate();
 
     const handleClick = (event) => {
@@ -29,29 +30,30 @@ function Dashboard (props){
             })
             .catch(error=>{
                 console.log("logout error", error);
-            })
+        })
         navigate("/")
-
-
     }
+    
     return( 
         <div className='content__wrapper'>
             <Sidebar>
                 <button id={"1"} className={active==="1"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);}}>Upravit profil</button>
                 <button id={"2"} className={active==="2"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Přehled studia</button>
+                    onClick={(e)=>{handleClick(e);}}>Uživatelé</button>
                 <button id={"3"} className={active==="3"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Registrované termíny</button>
+                    onClick={(e)=>{handleClick(e);}}>Místnosti</button>
                 <button id={"4"} className={active==="4"?"open-btn active":"open-btn"}
-                    onClick={(e)=>{handleClick(e);}}>Registrace kurzů</button>
+                    onClick={(e)=>{handleClick(e);}}>Kurzy</button>
                 <button id={"5"} className={active==="5"?"open-btn active":"open-btn"}
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
             </Sidebar>
             <div>
+                <h1>Dashboard</h1>
                 <DashboardControl active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></DashboardControl>
             </div>
         </div>
     );
-};
-export default Dashboard;
+}
+
+export default Dashboard

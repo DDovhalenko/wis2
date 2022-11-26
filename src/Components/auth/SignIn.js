@@ -8,8 +8,8 @@ const SignIn =(props)=>{
     const [password, setPassword]= useState('');
     const [emailDirty, setEmailDirty]= useState(false);
     const [passwordDirty, setPasswordDirty]= useState(false);
-    const [emailError, setEmailError]= useState('Email can`t be empty');
-    const [passwordError, setPasswordError]= useState('Password can`t be empty');
+    const [emailError, setEmailError]= useState("Email can't be empty");
+    const [passwordError, setPasswordError]= useState("Password can't be empty");
 
     const blurHandler = (e)=>{
         switch(e.target.name){
@@ -27,7 +27,7 @@ const SignIn =(props)=>{
     const emailHandler = (e)=>{
         setEmail(e.target.value);
         if(e.target.value.length<1){
-            setEmailError("Email can`t be empty");
+            setEmailError("Email can't be empty");
         }
         else{
             setEmailError("");
@@ -37,7 +37,7 @@ const SignIn =(props)=>{
     const passwordHandler=(e)=>{
         setPassword(e.target.value);
         if(e.target.value.length<1){
-            setPasswordError("Password can`t be empty");
+            setPasswordError("Password can't be empty");
         }
         else{
             setPasswordError("");
@@ -45,8 +45,8 @@ const SignIn =(props)=>{
     }
 
     const handleSubmit=(event)=>{
-        console.log("submiterd");
-        axios.post("http://localhost:3001/login",
+        //console.log("submited");
+        axios.post("https://wis2back.herokuapp.com/login",
             {
                 user: {
                     email: email,
@@ -58,10 +58,19 @@ const SignIn =(props)=>{
             )
             .then(response=>{
                 if(response.status===200){
-                    localStorage.setItem("token", response.headers.get("Authorization"));
-                    props.setCurrUser(response.data);
-                    console.log(props.currUser)
-                    history("/dashboard");
+                    localStorage.setItem("token", response.data.token);
+                    props.setCurrUser(response.data.user);
+                    //console.log(props.currUser)
+                    
+                    if(response.data.user.role==="teacher"){
+                        history("/teacher");
+                    }
+                    else if(response.data.user.role==="student"){
+                        history("/student");
+                    }
+                    else if(response.data.user.role==="admin"){
+                        history("/admin");
+                    }
                 }
                 console.log("registration res", response);
             })

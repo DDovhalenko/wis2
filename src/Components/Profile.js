@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from "react";
 import axios from 'axios';
-import "../../Styles/student/ProfileForm.css"
+import "./../Styles/student/ProfileForm.css"
 
 const Profile = (props)=>{
     const [name, setName]= useState(props.currUser.name);
@@ -81,7 +81,7 @@ const Profile = (props)=>{
 
     const handleSubmit=(event)=>{
         console.log("submiterd");
-        axios.put("http://localhost:3001/update",
+        axios.put("https://wis2back.herokuapp.com/update",
             {
                 user: {
                     name:               name,
@@ -107,7 +107,7 @@ const Profile = (props)=>{
     }
 
     const handlePasswordSubmit=(event)=>{
-        axios.put("http://localhost:3001/passupdate",
+        axios.put("https://wis2back.herokuapp.com/passupdate",
             {
                 user: {
                     password:   password

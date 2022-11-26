@@ -11,10 +11,10 @@ const Registration =(props)=>{
     const [surnameDirty, setSurnameDirty]= useState(false);
     const [emailDirty, setEmailDirty]= useState(false);
     const [passwordDirty, setPasswordDirty]= useState(false);
-    const [nameError, setNameError]= useState('Name can`t be empty');
-    const [surnameError, setSurnameError]= useState('Surname can`t be empty');
-    const [emailError, setEmailError]= useState('Email can`t be empty');
-    const [passwordError, setPasswordError]= useState('Password can`t be empty');
+    const [nameError, setNameError]= useState("Name can't be empty");
+    const [surnameError, setSurnameError]= useState("Surname can't be empty");
+    const [emailError, setEmailError]= useState("Email can't be empty");
+    const [passwordError, setPasswordError]= useState("Password can't be empty");
     const [formValid, setFormValid]= useState(false);
 
     useEffect(()=>{
@@ -49,7 +49,7 @@ const Registration =(props)=>{
     const nameHandler=(e)=>{
         setName(e.target.value);
         if(e.target.value.length<1){
-            setNameError("Name can`t be empty");
+            setNameError("Name can't be empty");
         }
         else{
             setNameError("");
@@ -60,7 +60,7 @@ const Registration =(props)=>{
     const surnameHandler=(e)=>{
         setSurname(e.target.value);
         if(e.target.value.length<1){
-            setSurnameError("Surname can`t be empty");
+            setSurnameError("Surname can't be empty");
         }
         else{
             setSurnameError("");
@@ -72,7 +72,7 @@ const Registration =(props)=>{
         setEmail(e.target.value);
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if(e.target.value.length<1){
-            setEmailError("Email can`t be empty");
+            setEmailError("Email can't be empty");
         }
         else if(!re.test(String(e.target.value).toLowerCase())){
             setEmailError("Incorrect email");
@@ -86,7 +86,7 @@ const Registration =(props)=>{
     const passwordHandler=(e)=>{
         setPassword(e.target.value)
         if(e.target.value.length<1){
-            setPasswordError("Password can`t be empty");
+            setPasswordError("Password can't be empty");
         }
         else if(e.target.value.length< 4||e.target.value.length>10){
             setPasswordError("Might be longer than 3 and shorter than 10");
@@ -98,8 +98,8 @@ const Registration =(props)=>{
     }
 
     const handleSubmit=(event)=>{
-        console.log("submiterd");
-        axios.post("http://localhost:3001/signup",
+        console.log("submited");
+        axios.post("https://wis2back.herokuapp.com/signup",
             {
                 user: {
                     name:       name,
@@ -114,7 +114,7 @@ const Registration =(props)=>{
             .then(response=>{
                 console.log("registration res", response);
                 if(response.status===200){
-                    localStorage.setItem('token', response.headers.get("Authorization").replace('Bearer ',''));
+                    localStorage.setItem('token', response.data.token);
                     props.setCurrUser(response.data)
                 }
             })
