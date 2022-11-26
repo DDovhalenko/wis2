@@ -52,8 +52,8 @@ const CreateCourse = (props)=>{
                 <input type="text" id="courseDescription" name="courseDescription" placeholder="popis"></input>
                 <label htmlFor="coursePrice">Cena kurzu (Kč)</label>
                 <input type="text" id="coursePrice" name="coursePrice" placeholder="cena" onKeyPress={e => onlyNumbers(e)}></input>
-                <label htmlFor="courseLimit">Limit studentů</label>
-                <input type="text" id="courseLimit" name="courseLimit" placeholder="limit" onKeyPress={e => onlyNumbers(e)}></input>
+                <label htmlFor="courseLimit">Limit studentů *</label>
+                <input type="text" id="courseLimit" name="courseLimit" placeholder="limit" onKeyPress={e => onlyNumbers(e)} required></input>
 
                 <button type="submit">Založit kurz</button>
                 {submited && <div>Kurz byl založen</div>}

@@ -42,12 +42,13 @@ const ListCourses = () => {
         const response = await axios.post("https://wis2back.herokuapp.com/showterms",
         {
             course:{
-                id: props,
+                id: props.id,
             }
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
         console.log("term list kokot", response);
+        setCurCourse(props);
         setTermsFromSelectedCourse(data);
         setShowTermsActive(true);
     }
@@ -55,8 +56,7 @@ const ListCourses = () => {
     const deleteCourse = async function(props){
         const response = await axios.delete("https://wis2back.herokuapp.com/courses/"+props,
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
-        
-    
+        getCourses();
     }
 
 
@@ -77,7 +77,7 @@ const ListCourses = () => {
                             <td>{course.price}</td>
                             <td>{course.count}/{course.limit}</td>
                             <td><button onClick={() => showDetails(course)}>Podrobnosti</button></td>
-                            <td><button onClick={() => showTerms(course.id)}>Termíny</button></td>
+                            <td><button onClick={() => showTerms(course)}>Termíny</button></td>
                             <td><button onClick={() => updateCourse(course)}>Upravit</button></td>
                             <td><button onClick={() => deleteCourse(course.id)}>Smazat</button></td>
                         </tr>
@@ -91,7 +91,7 @@ const ListCourses = () => {
                 <Details course={curCourse}></Details>
             </Modal>
             <Modal active={showTermsActive} setActive={setShowTermsActive}>
-                <ListTerms terms={termsFromSelectedCourse}></ListTerms>
+                <ListTerms terms={termsFromSelectedCourse} course={curCourse} active={showTermsActive} setActive={setShowTermsActive}></ListTerms>
             </Modal>
         </div>
     )
