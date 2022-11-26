@@ -10,7 +10,7 @@ const UpdateCourse = (props) => {
     if(props.course == null){
         return;
     }
-    const handleSubmit = (e)=>{
+    const handleSubmit = async function(e){
 
         e.preventDefault();
 
@@ -18,7 +18,7 @@ const UpdateCourse = (props) => {
         setSubmited(true)
 
 
-        axios.put("https://wis2back.herokuapp.com/courses", {
+        const response = await axios.put("https://wis2back.herokuapp.com/courses", {
             course:{
                 id: props.course.id,
                 name: e.target.courseName.value,
@@ -32,8 +32,9 @@ const UpdateCourse = (props) => {
             withCredentials:true
         }
         )
-        props.update();
+        console.log()
         props.setModalActive(false);
+        props.update();
     }
 
 

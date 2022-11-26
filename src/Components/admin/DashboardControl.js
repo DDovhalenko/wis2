@@ -1,9 +1,10 @@
 import React from "react";
 import Profile from '../Profile';
-import ListCourses from "./course/ListCourses";
-import ListRooms from "./rooms/ListRooms";
-import ListUsers from "./Users/ListUsers";
+//import ListCourses from "./ListCourses";
+import ListRooms from "./ListRooms";
+import ListUsers from "./ListUsers";
 import Statistics from "./Statistics";
+import ListCourses from "../teacher/course/ListCourses";
 
 const DashboardControl = (props)=>{
     switch (props.active){
