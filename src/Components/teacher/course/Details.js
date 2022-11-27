@@ -1,3 +1,5 @@
+import "../../../styles.css"
+
 /*
 import React,{useState, useEffect} from "react";
 import axios from "axios";
@@ -36,7 +38,7 @@ const Details = (props) => {
     }
     return(
         <div>
-            <h1>{props.course.name}</h1>
+            <h2>{props.course.name}</h2>
             <p>Cena: {props.course.price}</p>
             <p>Kapacita: {props.course.count}/{props.course.limit}</p>
             <p>Popis: {props.course.description}</p>

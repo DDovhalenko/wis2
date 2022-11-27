@@ -2,7 +2,8 @@
 
 import react, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import "../../../../styles.css"
+
 
 const ListTerms = (props) => {
     const [addTermModalActive, setAddTermModalActive] = useState(false);
@@ -10,16 +11,19 @@ const ListTerms = (props) => {
     const [terms, setTerms] = useState([]);
 
     const getTerms = async function() {
+        if(props.course == null){
+            return;
+        }
         const response = await axios.post("https://wis2back.herokuapp.com/showterms",
         {
             course:{
-                id: props.id,
+                id: props.course.id,
             }
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
-        console.log("fuck niggers", response);
         setTerms(data);
+        console.log("term list mrdka", response);
 
     }
 
@@ -40,20 +44,15 @@ const ListTerms = (props) => {
     }, [])
 
     const deleteTerm = async function(props){
-        console.log("Sending request to delete term", props);
         const response = await axios.delete("https://wis2back.herokuapp.com/terms/"+props,
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true}
         )
-
-
-    
+        getTerms();
     }
 
 
     const handleAddTerm = async function(e){
-        e.preventDefault();
-        console.log(e.target.termRoom.value.split(" ")[0]);
-        
+        e.preventDefault();        
         const resp = await axios.post("https://wis2back.herokuapp.com/terms",
         {
             course:{
@@ -71,6 +70,11 @@ const ListTerms = (props) => {
             }
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
+        .catch(error => {
+            console.log("jebat kurva");
+        })
+        console.log("čurák", resp)
+        getTerms();
     
     }
 
@@ -79,7 +83,6 @@ const ListTerms = (props) => {
             e.preventDefault();
           }
     }
-
 
     return(
         <div>
@@ -91,31 +94,37 @@ const ListTerms = (props) => {
                         <th>Datum</th>
                         <th>Začátek</th>
                         <th>Konec</th>
-                        <th>Limit</th>
+                        <th>Kapacita</th>
+                        <th>Místnost</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {props.terms && props.terms.map((term) => (
+                    {terms && terms.map((term) => (
                         <tr key={term.id}>
                             <td>{term.term_type}</td>
                             <td>{term.date.substring(8,10)+"."+term.date.substring(5,7)+"."+term.date.substring(0,4)}</td>
                             <td>{term.time_start.substring(11,16)}</td>
                             <td>{term.time_end.substring(11,16)}</td>
-                            <td>{term.limit}</td>
+                            <td>{term.count}/{term.limit}</td>
                             <td><button onClick={() => deleteTerm(term.id)}>Odstranit</button></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <h2>Přidat termín</h2>
-            {/*<CreateTerm course={props.course} modal={setAddTermModalActive}/>*/}
             <div>
             <form className="createTerm" onSubmit={handleAddTerm}>
-            <input type="text" name="termType" placeholder="Typ termínu" required/>
+                <label>Typ termínu</label>
+                <input type="text" name="termType" placeholder="Typ termínu" required/>
+                <label>Datum</label>
                 <input type="date" id="termDate" name="termDate" required></input>
+                <label>Od</label>
                 <input type="time" id="termTimeStart" name="termTimeStart" required></input>
+                <label>Do</label>
                 <input type="time" id="termTimeEnd" name="termTimeEnd" required></input>
-                <input type="text" id="termLimit" name="termLimit" placeholder="limit" onKeyPress={e => onlyNumbers(e)}></input>
+                <label>Kapacita</label>
+                <input type="text" id="termLimit" name="termLimit" placeholder="kapacita" onKeyPress={e => onlyNumbers(e)} required></input>
+                <label>Místnost</label>
                 <select name="termRoom" id="termRoom">
                     {rooms.map((room) => <option>{room.id} {room.name}</option>)}
                 </select>
@@ -127,12 +136,3 @@ const ListTerms = (props) => {
 }
 
 export default ListTerms
-
-
-/*
-            <button onClick={() => handleAddTerm()}>Přidat termín</button>
-
-            <Modal active={addTermModalActive} setActive={setAddTermModalActive} activeOld={props.showTermsActive} setActiveOld={props.setShowTermsActive}>
-                <CreateTerm course={props.course} modal={setAddTermModalActive}/>
-            </Modal>
-*/

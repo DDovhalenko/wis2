@@ -13,11 +13,10 @@ const Home =(props)=>{
     return (
         <div className='content__wrapper'>
             <Sidebar>
-                <button className='open-btn' onClick={()=>setSignInModalActive(true)}>Sign in</button>
-                <button className='open-btn' onClick={()=>setRegistrateModalActive(true)}>Registrate</button>
+                <button className='open-btn' onClick={()=>setSignInModalActive(true)}>Přihlásit</button>
+                <button className='open-btn' onClick={()=>setRegistrateModalActive(true)}>Registrovat</button>
             </Sidebar>
             <div>
-                <h1>Home</h1>
                 <Modal active={signInModalActive} setActive={setSignInModalActive}>
                     <SignIn currUser={props.currUser} setCurrUser={props.setCurrUser}></SignIn>
                 </Modal>

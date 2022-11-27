@@ -6,7 +6,7 @@ import UpdateCourse from './UpdateCourse';
 import Modal from '../../modal/Modal';
 import Details from './Details';
 import ListTerms from './term/ListTerms';
-
+import "../../../styles.css"
 
 const ListCourses = () => {
     const navigate = useNavigate();

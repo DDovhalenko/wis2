@@ -16,6 +16,7 @@ const Registration =(props)=>{
     const [emailError, setEmailError]= useState("Email can't be empty");
     const [passwordError, setPasswordError]= useState("Password can't be empty");
     const [formValid, setFormValid]= useState(false);
+    const [error, setError]= useState(false);
 
     useEffect(()=>{
         if(nameError||surnameError||emailError||passwordError){
@@ -120,6 +121,7 @@ const Registration =(props)=>{
             })
             .catch(error=>{
                 console.log("registration error", error);
+                setError(true);
             })
 
         event.preventDefault();
@@ -130,8 +132,8 @@ const Registration =(props)=>{
         <div>
             <div>{responseText}</div>
             <form onSubmit={handleSubmit}>
-                <h1>Registration</h1>
-                <label>Name</label>
+                <h1>Registrace</h1>
+                <label>Jméno</label>
                 {(nameDirty&&nameError)&&<label style={{color:'red'}}>{nameError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
@@ -141,7 +143,7 @@ const Registration =(props)=>{
                 onChange={e=>nameHandler(e)}
                 required
                 />
-                <label>Surname</label>
+                <label>Příjmení</label>
                 {(surnameDirty&&surnameError)&&<label style={{color:'red'}}>{surnameError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
@@ -161,7 +163,7 @@ const Registration =(props)=>{
                 onChange={e=>emailHandler(e)}
                 required
                 />
-                <label>Password</label>
+                <label>Heslo</label>
                 {(passwordDirty&&passwordError)&&<label style={{color:'red'}}>{passwordError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
@@ -175,10 +177,10 @@ const Registration =(props)=>{
                     <button 
                     disabled={!formValid}
                     type="submit"
-                    >Registrate</button>
+                    >Registrovat</button>
                 </div>
-                
             </form>
+            {error&&<h2 style={{"text-align": "center", "font-size":"xx-large", "color":"red"}}>Uživatel s tímto emailem již existuje!</h2>}
         </div>
     )
 }

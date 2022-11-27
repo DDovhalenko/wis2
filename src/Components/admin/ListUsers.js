@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "../modal/Modal";
+import "../../styles.css"
 
 const ListUsers = (props) => {
 
@@ -71,12 +72,14 @@ const ListUsers = (props) => {
             <Modal active={userRoleActive} setActive={setUserRoleActive}>
                 <h1>Změna role uživatele</h1>
                 <div onChange={onChangeRadioButton}>
-                    <input type="radio" id="student" name="role" value="student"/>
                     <label for="student">Student</label>
-                    <input type="radio" id="teacher" name="role" value="teacher"/>
+                    <input type="radio" id="student" name="role" value="student"/>
+                    <br/>
                     <label for="teacher">Učitel</label>
-                    <input type="radio" id="admin" name="role" value="admin"/>
+                    <input type="radio" id="teacher" name="role" value="teacher"/>
+                    <br/>
                     <label for="admin">Admin</label>
+                    <input type="radio" id="admin" name="role" value="admin"/>
                 </div>
                 <button onClick={() => saveUserRole()}>Uložit</button>
             </Modal>

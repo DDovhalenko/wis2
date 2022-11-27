@@ -6,13 +6,12 @@ import "../../../styles.css"
 const CreateCourse = (props)=>{
     const [submited, setSubmited] = useState(false)
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async function(e){
         e.preventDefault();
 
-        console.log("submited");
         setSubmited(true)
 
-        axios.post("https://wis2back.herokuapp.com/courses",
+        await axios.post("https://wis2back.herokuapp.com/courses",
         {
             course:{
                 name: e.target.courseName.value,
@@ -34,6 +33,7 @@ const CreateCourse = (props)=>{
         .catch(error=>{
             console.log("error", error);
         })
+        
         //e.target.reset();
     }
 

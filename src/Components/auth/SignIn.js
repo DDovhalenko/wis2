@@ -10,6 +10,7 @@ const SignIn =(props)=>{
     const [passwordDirty, setPasswordDirty]= useState(false);
     const [emailError, setEmailError]= useState("Email can't be empty");
     const [passwordError, setPasswordError]= useState("Password can't be empty");
+    const [error, setError] = useState(false)
 
     const blurHandler = (e)=>{
         switch(e.target.name){
@@ -75,7 +76,7 @@ const SignIn =(props)=>{
                 console.log("registration res", response);
             })
             .catch(error=>{
-                console.log("registration error", error);
+                setError(true)
             })
 
         event.preventDefault();
@@ -83,7 +84,7 @@ const SignIn =(props)=>{
 
     return(
         <div>
-            <h1>Sign In</h1>
+            <h1>Přihlášení</h1>
             <form onSubmit={handleSubmit}>
                 <label>Email</label>
                 {(emailDirty&&emailError)&&<label style={{color:'red'}}>{emailError}</label>}
@@ -95,7 +96,7 @@ const SignIn =(props)=>{
                 onChange={e=>emailHandler(e)}
                 required
                 />
-                <label>Password</label>
+                <label>Heslo</label>
                 {(passwordDirty&&passwordError)&&<label style={{color:'red'}}>{passwordError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
@@ -108,9 +109,10 @@ const SignIn =(props)=>{
                 <div className='buttons'>
                     <button 
                     type="submit"
-                    >Log in</button>
+                    >Přihlásit</button>
                 </div>
             </form>
+            {error && <h2 style={{"text-align": "center", "font-size":"xx-large", "color":"red"}}>Email a heslo se neshodují!</h2>}
         </div>
     )
 }
