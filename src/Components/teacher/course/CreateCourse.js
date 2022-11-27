@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from "react";
 import axios from 'axios';
-//import "../../Styles/teacher/CreateCourse.css"
 import "../../../styles.css"
 
 const CreateCourse = (props)=>{
@@ -63,11 +62,3 @@ const CreateCourse = (props)=>{
 }
 export default CreateCourse
  
-/*
-
-                <label htmlFor="courseDates">Termíny kurzu</label>
-                {appointments.map((item, index) => (<Appointment index={index} removeAppointments={removeAppointments} appos={appos}/>))}
-                <button className="addButton" onClick={addAppointments} type="button">Přidat termín</button>
-
-
- */

@@ -4,7 +4,6 @@ import axios from "axios";
 
 const ListTerms = (props) => {
     const registerTerm = async function(props){
-        console.log("Sending request to register term", props);
         const response = await axios.post("https://wis2back.herokuapp.com/term_registrations",
         {
             term:{

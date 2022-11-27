@@ -1,5 +1,4 @@
 const Details = (props) => {
-    console.log("props", props);
     if(props.course == null){
         return;
     }

@@ -13,14 +13,12 @@ const ListRooms = () => {
         const response = await axios.get("https://wis2back.herokuapp.com/rooms",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
         setRooms(data)
-        console.log(data)
     }
     useEffect(() => {
         getRooms();
     }, [])
 
     const deleteRoom = async function(props){
-        console.log("Sending request to delete room", props);
         const response = await axios.delete("https://wis2back.herokuapp.com/rooms/"+props,
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true}
         )
@@ -29,7 +27,6 @@ const ListRooms = () => {
 
     const addRoom = async function(e){
         e.preventDefault();
-        console.log(e.target.roomName.value);
         const resp = await axios.post("https://wis2back.herokuapp.com/rooms",
         {
             name: e.target.roomName.value,

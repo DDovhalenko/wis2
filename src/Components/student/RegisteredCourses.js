@@ -16,7 +16,6 @@ const RegisteredCourses = ()=>{
 
 
     const unregisterCourse = async function(props) {
-        console.log("Sending request to unregister user from course", props);
         const response = await axios.post("https://wis2back.herokuapp.com/delete_course_registrations",
         {
             course:{
@@ -24,15 +23,12 @@ const RegisteredCourses = ()=>{
             }
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
-        console.log("Response from unregister user from course", response);
         getCourses();
         
     }
 
     const getCourses = async function() {
-        console.log("Sending request to get registered courses");
         const response = await axios.get("https://wis2back.herokuapp.com/course_registrations",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
-        console.log("Response from get registered courses", response);
         setCourses(response.data.courses);
     }
     useEffect(() => {
@@ -48,7 +44,6 @@ const RegisteredCourses = ()=>{
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
-        console.log("term list kokot", response);
         setTermsFromSelectedCourse(data);
 
         setShowTermsActive(true);

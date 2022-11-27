@@ -23,7 +23,6 @@ const ListTerms = (props) => {
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
         setTerms(data);
-        console.log("term list mrdka", response);
 
     }
 
@@ -71,9 +70,8 @@ const ListTerms = (props) => {
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         .catch(error => {
-            console.log("jebat kurva");
+            console.log(error);
         })
-        console.log("čurák", resp)
         getTerms();
     
     }

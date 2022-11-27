@@ -13,7 +13,6 @@ const ListUsers = (props) => {
     const getUsers = async function() {
         const response = await axios.get("https://wis2back.herokuapp.com/users",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
-        console.log("kurvy", data);
         setUsers(data);
     }
     useEffect(() => {
@@ -26,7 +25,6 @@ const ListUsers = (props) => {
     }
 
     const saveUserRole = async function(props){
-        console.log("kurvy", selectedUser.id);
         const response = await axios.put("https://wis2back.herokuapp.com/roleupdate",
         {
             user:{

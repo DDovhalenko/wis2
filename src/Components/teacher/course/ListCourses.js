@@ -21,7 +21,6 @@ const ListCourses = () => {
     const getCourses = async function() {
         const response = await axios.get("https://wis2back.herokuapp.com/courses",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
-        console.log("ahoj", data);
         setCourses(data);
     }
     useEffect(() => {
@@ -47,7 +46,6 @@ const ListCourses = () => {
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
-        console.log("term list kokot", response);
         setCurCourse(props);
         setTermsFromSelectedCourse(data);
         setShowTermsActive(true);

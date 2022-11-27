@@ -10,26 +10,6 @@ function CourseDashboard (props){
         setActive(event.target.id);
       }
 
-    const handleLogOut = ()=>{
-        console.log("logout");
-        axios.delete("https://wis2back.herokuapp.com/logout",
-            {             
-            },
-            {headers: {
-                "authorization": localStorage.getItem("token")
-                },
-                withCredentials:true}
-            )
-            .then(response=>{
-                console.log("logout", response);
-                if(response.status===200){
-                    localStorage.removeItem("token");
-                }
-            })
-            .catch(error=>{
-                console.log("logout error", error);
-        })
-    }
     return( 
         <div className='content__wrapper'>
             <Sidebar>

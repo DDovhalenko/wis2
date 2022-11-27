@@ -1,4 +1,3 @@
-import CreateCourse from "./CreateCourse"
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -14,7 +13,6 @@ const UpdateCourse = (props) => {
 
         e.preventDefault();
 
-        console.log("Update course", props.course.id);
         setSubmited(true)
 
 
@@ -32,7 +30,6 @@ const UpdateCourse = (props) => {
             withCredentials:true
         }
         )
-        console.log()
         props.setModalActive(false);
         props.update();
     }

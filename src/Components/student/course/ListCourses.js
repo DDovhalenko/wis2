@@ -10,9 +10,7 @@ const ListCourses = () => {
 
 
     const getCourses = async function() {
-        console.log("Sending request to get courses");
         const response = await axios.get("https://wis2back.herokuapp.com/courses",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
-        console.log("Response from get courses", response);
         const data = response.data;
         setCourses(data);
     }
@@ -20,9 +18,7 @@ const ListCourses = () => {
         getCourses();
     }, [])
 
-    const registerCourse = (props) => {
-        console.log("Sending request to register course");
-        
+    const registerCourse = (props) => {        
         const response = axios.post("https://wis2back.herokuapp.com/course_registrations",
         {
             course:{
@@ -30,7 +26,6 @@ const ListCourses = () => {
             }
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
-        console.log("Response from register course", response);
     }
 
     const showDetails = (props) => {
