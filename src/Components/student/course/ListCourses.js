@@ -7,7 +7,7 @@ const ListCourses = () => {
     const [courses, setCourses] = useState([]);
     const [curCourse, setCurCourse] = useState(null);
     const [showDetailsActive, setShowDetailsActive] = useState(false);
-
+    const [error, setError] = useState(null);
 
     const getCourses = async function() {
         const response = await axios.get("https://wis2back.herokuapp.com/courses",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
@@ -26,6 +26,9 @@ const ListCourses = () => {
             }
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
+        .catch((error) => {
+            setError(true);
+        })
     }
 
     const showDetails = (props) => {
@@ -59,6 +62,7 @@ const ListCourses = () => {
             <Modal active={showDetailsActive} setActive={setShowDetailsActive}>
                 <Details course={curCourse}></Details>
             </Modal>
+            {error && <h1 style={{"text-align": "center", "font-size":"xx-large", "color":"red"}}>Tento kurz je již plný!</h1>}
         </div>
     )
 

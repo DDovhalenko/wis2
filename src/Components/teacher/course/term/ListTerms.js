@@ -9,6 +9,7 @@ const ListTerms = (props) => {
     const [addTermModalActive, setAddTermModalActive] = useState(false);
     const [rooms, setRooms] = useState([]);
     const [terms, setTerms] = useState([]);
+    const [error, setError] = useState(false);
 
     const getTerms = async function() {
         if(props.course == null){
@@ -70,7 +71,7 @@ const ListTerms = (props) => {
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         .catch(error => {
-            console.log(error);
+            setError(true);
         })
         getTerms();
     
@@ -128,7 +129,8 @@ const ListTerms = (props) => {
                 </select>
                 <button type="submit">Přidat termín</button>
             </form>
-        </div>
+            </div>
+            {error && <h2 style={{"text-align": "center", "font-size":"xx-large", "color":"red"}}>V zadaném čase je už tato místnost obsazená!</h2>}
         </div>
     )
 }
