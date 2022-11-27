@@ -44,7 +44,7 @@ const ListCourses = () => {
                     <tr>
                         <th>Název</th>
                         <th>Cena</th>
-                        <th>Limit</th>
+                        <th>Kapacita</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@ const ListCourses = () => {
                         <tr key={course.id}>
                             <td>{course.name}</td>
                             <td>{course.price}</td>
-                            <td>{course.limit}</td>
+                            <td>{course.count}/{course.limit}</td>
                             <td><button onClick={() => showDetails(course)}>Podrobnosti</button></td>
                             <td><button onClick={() => registerCourse(course.id)}>Zaregistrovat</button></td>
                         </tr>

@@ -5,28 +5,13 @@ import axios from 'axios';
 import "../../../../styles.css"
 
 
-const ListTerms = (props) => {
+const ListTerms = ({terms, course, getTerms}) => {
     const [addTermModalActive, setAddTermModalActive] = useState(false);
     const [rooms, setRooms] = useState([]);
-    const [terms, setTerms] = useState([]);
+    //const [terms, setTerms] = useState([]);
     const [error, setError] = useState(false);
-
-    const getTerms = async function() {
-        if(props.course == null){
-            return;
-        }
-        const response = await axios.post("https://wis2back.herokuapp.com/showterms",
-        {
-            course:{
-                id: props.course.id,
-            }
-        },
-        {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
-        const data = response.data;
-        setTerms(data);
-
-    }
-
+    //terms={termsFromSelectedCourse} course={curCourse} active={showTermsActive} setActive={setShowTermsActive} getTerms={getTerms}
+    //const getTerms = props.getTerms
 
     const getRooms = async function() {
         const response = await axios.get("https://wis2back.herokuapp.com/rooms",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
@@ -39,7 +24,6 @@ const ListTerms = (props) => {
 
     }
     useEffect(() => {
-        getTerms();
         getRooms();
     }, [])
 
@@ -47,7 +31,7 @@ const ListTerms = (props) => {
         const response = await axios.delete("https://wis2back.herokuapp.com/terms/"+props,
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true}
         )
-        getTerms();
+        getTerms(course);
     }
 
 
@@ -56,7 +40,7 @@ const ListTerms = (props) => {
         const resp = await axios.post("https://wis2back.herokuapp.com/terms",
         {
             course:{
-                id: props.course.id
+                id: course.id
             },
             term:{
                 term_type: e.target.termType.value,
@@ -73,7 +57,7 @@ const ListTerms = (props) => {
         .catch(error => {
             setError(true);
         })
-        getTerms();
+        getTerms(course);
     
     }
 
@@ -105,6 +89,7 @@ const ListTerms = (props) => {
                             <td>{term.time_start.substring(11,16)}</td>
                             <td>{term.time_end.substring(11,16)}</td>
                             <td>{term.count}/{term.limit}</td>
+                            <td>{term.room}</td>
                             <td><button onClick={() => deleteTerm(term.id)}>Odstranit</button></td>
                         </tr>
                     ))}

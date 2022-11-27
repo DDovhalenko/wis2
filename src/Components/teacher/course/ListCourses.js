@@ -37,7 +37,8 @@ const ListCourses = () => {
         setShowDetailsActive(true);
     }
 
-    const showTerms = async function(props){
+
+    const getTerms = async function(props) {
         const response = await axios.post("https://wis2back.herokuapp.com/showterms",
         {
             course:{
@@ -46,8 +47,14 @@ const ListCourses = () => {
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
-        setCurCourse(props);
         setTermsFromSelectedCourse(data);
+        console.log(data)
+    }
+
+    const showTerms = (props) => {
+        console.log(props)
+        getTerms(props);
+        setCurCourse(props);
         setShowTermsActive(true);
     }
 
@@ -89,7 +96,7 @@ const ListCourses = () => {
                 <Details course={curCourse}></Details>
             </Modal>
             <Modal active={showTermsActive} setActive={setShowTermsActive}>
-                <ListTerms terms={termsFromSelectedCourse} course={curCourse} active={showTermsActive} setActive={setShowTermsActive}></ListTerms>
+                <ListTerms terms={termsFromSelectedCourse} course={curCourse} getTerms={getTerms}></ListTerms>
             </Modal>
         </div>
     )
