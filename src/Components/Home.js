@@ -19,8 +19,8 @@ const Home =(props)=>{
     return (
         <div className='content__wrapper'>
             <Sidebar>
-                <button className='open-btn' onClick={()=>setSignInModalActive(true)}>Přihlásit</button>
-                <button className='open-btn' onClick={()=>setRegistrateModalActive(true)}>Registrovat</button>
+                <button className='open-btn' onClick={()=>{setSignInModalActive(true);setShowCourses(false)}}>Přihlásit</button>
+                <button className='open-btn' onClick={()=>{setRegistrateModalActive(true);setShowCourses(false)}}>Registrovat</button>
                 <button className='open-btn' onClick={()=>setShowCourses(true)}>Prohlížet kurzy</button>
             </Sidebar>
             <div>

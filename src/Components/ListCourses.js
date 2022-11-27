@@ -1,7 +1,7 @@
 import { useEffect , useState} from "react"
 import axios from "axios"
 import Modal from "./modal/Modal"
-import Details from "./teacher/course/Details"
+import Details from "./Details"
 
 
 const ListCourses = () =>{
