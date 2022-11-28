@@ -130,7 +130,7 @@ const Profile = (props)=>{
     return(
     <div className="profile__content">
         <form onSubmit={handleSubmit}>
-                <label>Name</label>
+                <label>Jméno</label>
                 {(nameError)&&<label style={{color:'red'}}>{nameError}</label>}
                 <input 
                 type="name"
@@ -139,7 +139,7 @@ const Profile = (props)=>{
                 onChange={e=>nameHandler(e)}
                 required
                 />
-                <label>Surname</label>
+                <label>Příjmení</label>
                 {(surnameError)&&<label style={{color:'red'}}>{surnameError}</label>}
                 <input 
                 type="surname"
@@ -161,12 +161,12 @@ const Profile = (props)=>{
                     <button 
                     disabled={!formValid}
                     type="submit"
-                    >Apply changes</button>
+                    >Potvrdit změny</button>
                 </div>
                 
             </form>
             <form onSubmit={handlePasswordSubmit}>
-            <label>New password</label>
+            <label>Nové heslo</label>
                 {(passwordDirty&&passwordError)&&<label style={{color:'red'}}>{passwordError}</label>}
                 <input 
                 onBlur = {e=>blurHandler(e)}
@@ -180,7 +180,7 @@ const Profile = (props)=>{
                     <button 
                     disabled={!formPasswordValid}
                     type="submit"
-                    >Apply changes</button>
+                    >Potvrdit změny</button>
                 </div>
             </form>
     </div>
