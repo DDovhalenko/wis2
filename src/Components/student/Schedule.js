@@ -32,6 +32,7 @@ const Schedule = ()=>{
         <table>
             <thead>
                 <tr>
+                    <th>Předmět</th>
                     <th>Datum</th>
                     <th>Začátek</th>
                     <th>Konec</th>
@@ -40,6 +41,7 @@ const Schedule = ()=>{
             <tbody>
                 {terms && terms.map((term) => (
                     <tr key={term.id}>
+                        <td>{term.name}</td>
                         <td>{term.date.substring(8,10)+"."+term.date.substring(5,7)+"."+term.date.substring(0,4)}</td>
                         <td>{term.time_start.substring(11,16)}</td>
                         <td>{term.time_end.substring(11,16)}</td>
