@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import axios from 'axios';
 import "../styles.css"
+import "../Styles/ProfileForm.css"
 
 const Profile = (props)=>{
     const [name, setName]= useState(props.currUser.name);

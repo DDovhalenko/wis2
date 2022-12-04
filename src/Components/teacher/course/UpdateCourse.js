@@ -44,7 +44,7 @@ const UpdateCourse = (props) => {
 
 
     return(
-        <div className="createCourse">
+        <div className="updateCourse">
             <form className="createCourseForm" onSubmit={handleSubmit} key={props.course.id}>
                 <label htmlFor="courseName">Název kurzu *</label>
                 <input type="text" id="courseName" name="courseName" placeholder="název" required defaultValue={props.course.name}></input>

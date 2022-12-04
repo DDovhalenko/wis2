@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import axios from 'axios';
 import "../../../styles.css"
+import "../../../Styles/teacher/CreateCourse.css"
 
 const CreateCourse = (props)=>{
     const [submited, setSubmited] = useState(false)

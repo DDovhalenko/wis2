@@ -3,6 +3,7 @@
 import react, {useState, useEffect} from 'react';
 import axios from 'axios';
 import "../../../../styles.css"
+import "../../../../Styles/teacher/CreateTerm.css"
 
 
 const ListTerms = ({terms, course, getTerms}) => {
@@ -68,7 +69,7 @@ const ListTerms = ({terms, course, getTerms}) => {
     }
 
     return(
-        <div>
+        <div className='createTermTable'>
             <h2>Aktuální termíny</h2>
             <table>
                 <thead>
@@ -110,7 +111,7 @@ const ListTerms = ({terms, course, getTerms}) => {
                 <input type="text" id="termLimit" name="termLimit" placeholder="kapacita" onKeyPress={e => onlyNumbers(e)} required></input>
                 <label>Místnost</label>
                 <select name="termRoom" id="termRoom">
-                    {rooms.map((room) => <option>{room.id} {room.name}</option>)}
+                    {rooms.map((room) => <option> {room.name}</option>)}
                 </select>
                 <button type="submit">Přidat termín</button>
             </form>

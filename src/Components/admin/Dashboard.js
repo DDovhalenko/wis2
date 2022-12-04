@@ -49,7 +49,6 @@ const Dashboard = (props) => {
                     onClick={(e)=>{handleClick(e);handleLogOut();}}>Odhlásit se</button>
             </Sidebar>
             <div>
-                <h1>Dashboard</h1>
                 <DashboardControl active={active} currUser={props.currUser} setCurrUser={props.setCurrUser}></DashboardControl>
             </div>
         </div>

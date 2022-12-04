@@ -4,11 +4,13 @@
     width:50vw;
     background-color: #4A4A4A;
     opacity:0.9;
+    margin-left: 25px;
 }
 
 .profile__content form{
     display: flex;
     flex-direction: column;
+    margin:0;
 }
 
 .profile__content form input,

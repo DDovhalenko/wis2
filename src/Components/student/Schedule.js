@@ -28,7 +28,7 @@ const Schedule = ()=>{
     }
 
     return(
-    <div>
+    <div className='Content'>
         <table>
             <thead>
                 <tr>

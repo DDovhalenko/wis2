@@ -20,7 +20,7 @@ const ListTerms = (props) => {
     }
 
     return(
-        <div>
+        <div className="Content">
             <table>
                 <thead>
                     <tr>

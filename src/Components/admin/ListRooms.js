@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from "react";
 import axios from "axios";
+import "../../Styles/RoomForm.css"
 
 
 
@@ -37,7 +38,7 @@ const ListRooms = () => {
     }
     
     return(
-        <div>
+        <div className="room__content">
             <table>
                 <thead>
                     <tr>
@@ -55,8 +56,8 @@ const ListRooms = () => {
                     ))}
                 </tbody>
             </table>
-            <h2>Přidat místnost</h2>
             <form onSubmit={addRoom}>
+                <h2>Přidat místnost</h2>
                 <input type="text" name="roomName" placeholder="Název místnosti"></input>
                 <button type="submit">Přidat místnost</button>
             </form>

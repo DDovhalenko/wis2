@@ -1,18 +1,30 @@
 .createCourse{
-    padding: 20px;
     border-radius: 12px;
     width:50vw;
+    margin: auto;
     background-color: #4A4A4A;
     opacity:0.9;
 }
 
-.createCourse form{
+.updateCourse{
+    border-radius: 12px;
+    width:100%;
+    margin: auto;
+    background-color: #4A4A4A;
+    opacity:0.9;
+}
+
+.createCourseForm{
+    margin: 0;
+}
+
+.createCourseForm{
     display: flex;
     flex-direction: column;
 }
 
-.createCourse form input,
-.createCourse form label{
+.createCourseForm input,
+.createCourseForm label{
     width: 90%;
     height: 30px;
     margin-left: 5%;
@@ -20,18 +32,18 @@
     opacity:1;
 }
 
-.createCourse form input{
+.createCourseForm input{
     background-color: #949494;
     color:#ffffff;
     border-radius:5px ;
     border:none;
 }
 
-.createCourse form input:focus{
+.createCourseForm input:focus{
     outline: none;
 }
 
-.createCourse form div{
+.createCourseForm div{
     display: flex;
     justify-content: space-between;
     width: 95%;
@@ -39,7 +51,7 @@
 
 
 
-.createCourse form .buttons{
+.createCourseForm .buttons{
     display: flex;
     justify-content: space-between;
     width: 90%;
@@ -47,7 +59,7 @@
 
 }
 
-.createCourse form button[class=deleteAppo]{
+.createCourseForm button[class=deleteAppo]{
     width: 50%;
     height: 30px;
     margin-top: 3px;
@@ -60,15 +72,15 @@
     cursor: pointer;
 }
 
-.createCourse form table{
+.createCourseForm table{
     width: 95%;
     margin: auto;
 }
 
 
-.createCourse form button{
-    width: 40%;
+.createCourseForm button{
     height:30px;
+    margin-left: 5%;
     margin-top: 20px;
     color:#ffffff;
     background-color: #4A4A4A;
@@ -78,7 +90,7 @@
     cursor: pointer;
 }
 
-.createCourse form button:disabled{
+.createCourseForm button:disabled{
     opacity:0.5;
     cursor:not-allowed;
 }

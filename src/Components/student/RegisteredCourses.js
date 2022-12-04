@@ -55,7 +55,7 @@ const RegisteredCourses = ()=>{
     }
 
     return (
-        <div>
+        <div className='Content'>
             <table>
                 <thead>
                     <tr>

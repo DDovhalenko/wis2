@@ -11,6 +11,7 @@
     opacity: 0;
     pointer-events: none;
     transition: 0.5s;
+    overflow-y: auto;
 }
 
 .modal.active{
@@ -19,21 +20,37 @@
 }
 
 .modal__content{
+    margin-top: 60px;
     padding: 20px;
     border-radius: 12px;
     background-color: white;
     transform:scale(0.5);
     transition: 0.4s all;
-    width:50vw;
+    width:60vw;
 
     background-color: #4A4A4A;
     border: solid 1px #ffffff;
-    
+
+}
+
+.modal__content p{
+    text-align: left;
+    margin-top: 15px;
+    margin-left: 10px;
 }
 
 .modal__content form{
     display: flex;
     flex-direction: column;
+    margin: 25px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.modal__content h1{
+    width: 70%;
+    margin: auto;
+    margin-top: 0px;
 }
 
 .modal__content form input,
