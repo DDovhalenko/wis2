@@ -1,3 +1,5 @@
+//Author : Roman Vintoňak xvinto00
+
 import React from "react";
 import { useNavigate } from "react-router";
 import Details from "./Details";

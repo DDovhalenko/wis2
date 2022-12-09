@@ -1,3 +1,5 @@
+//Author : Dmytro Dovhalenko xdovha00
+
 import React,{useState}  from 'react';
 import Sidebar from './Sidebar';
 import Modal from './modal/Modal'

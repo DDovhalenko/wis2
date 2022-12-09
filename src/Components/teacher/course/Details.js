@@ -1,3 +1,5 @@
+//Author : Roman Vintoňak xvinto00
+
 import "../../../styles.css"
 
 const Details = (props) => {

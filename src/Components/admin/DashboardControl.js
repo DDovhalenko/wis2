@@ -1,3 +1,5 @@
+//Author : Ivo Prochazka xproch0h
+
 import React from "react";
 import Profile from '../Profile';
 import ListRooms from "./ListRooms";

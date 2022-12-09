@@ -1,3 +1,5 @@
+//Author : Roman Vintoňak xvinto00
+
 const Details = (props) => {
     if(props.course == null){
         return;

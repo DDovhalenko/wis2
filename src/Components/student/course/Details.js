@@ -1,3 +1,5 @@
+//Author : Dmytro Dovhalenko xdovha00
+
 const Details = (props) => {
     if(props.course == null){
         return;

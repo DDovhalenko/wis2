@@ -1,3 +1,5 @@
+//Author : Dmytro Dovhalenko xdovha00
+
 import React from "react";
 import "../../Styles/modal/Modal.css"
 

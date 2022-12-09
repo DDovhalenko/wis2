@@ -1,3 +1,5 @@
+//Author : Dmytro Dovhalenko xdovha00
+
 import react, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from '../../modal/Modal';

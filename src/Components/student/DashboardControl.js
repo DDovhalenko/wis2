@@ -1,3 +1,5 @@
+//Author : Dmytro Dovhalenko xdovha00
+
 import React from "react";
 import Profile from '../Profile';
 import ListCourses from "./course/ListCourses";

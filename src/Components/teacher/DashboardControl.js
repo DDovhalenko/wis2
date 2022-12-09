@@ -1,3 +1,5 @@
+//Author : Roman Vintoňak xvinto00
+
 import React from "react";
 import Profile from '../Profile';
 import CreateCourse from "./course/CreateCourse";

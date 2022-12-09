@@ -1,3 +1,5 @@
+//Author : Ivo Prochazka xproch0h
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "../modal/Modal";

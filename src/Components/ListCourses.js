@@ -1,3 +1,5 @@
+//Author : Roman Vintoňak xvinto00
+
 import { useEffect , useState} from "react"
 import axios from "axios"
 import Modal from "./modal/Modal"
