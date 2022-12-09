@@ -1,0 +1,68 @@
+/*Author : Dmytro Dovhalenko xdovha00*/
+.rbc-time-content::-webkit-scrollbar {
+    width: 5px;
+  }
+.rbc-time-content::-webkit-scrollbar-thumb {
+    background: #F05757; 
+    border-radius: 10px;
+  }
+
+.Calendar{
+    background-color: #4A4A4A;
+    opacity: 0.9;
+    margin-top:20px;
+    width:90%;
+    padding:20px;
+    margin-left:25px;
+    border-radius: 20px;
+}
+
+.rbc-toolbar button{
+    color:#ffffff;
+}
+
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active{
+    background-color: #F05757;
+}
+
+.rbc-off-range-bg{
+    background-color: #646464;
+    color:#000000;
+}
+
+.rbc-off-range .rbc-button-link{
+    color:#000;
+}
+
+.rbc-current .rbc-button-link{
+    color:#000;
+}
+
+.rbc-today{
+    background-color: #b0b0b0;
+}
+
+.rbc-agenda-view table.rbc-agenda-table{
+    width:90%;
+}
+
+.rbc-agenda-time-cell {
+    border-left: 1px solid #ddd;
+}
+
+.rbc-today .rbc-button-link span{
+    color:#000;
+}
+
+
+.rbc-day-slot.rbc-time-column.rbc-now.rbc-today .rbc-time-slot{
+    background-color: #4A4A4A;
+}
+
+.rbc-event, .rbc-day-slot .rbc-background-event{
+    background-color: #F05757;
+}
+
+.rbc-time-header{
+    margin-right: 5px!important;
+}

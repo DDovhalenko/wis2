@@ -2,15 +2,29 @@
 
 import React,{useState, useEffect} from "react";
 import axios from "axios";
-
-
+import MyCalendar from "./MyCalendar";
 
 const Schedule = ()=>{
+    
     const [terms, setTerms] = useState([]);
+    const [events, setEvents] = useState([]);
+
 
     const getTerms = async function() {
         const response = await axios.get("https://wis2back.herokuapp.com/term_registrations",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         setTerms(response.data.terms);
+        let arr=[];
+        response.data.terms.map((term)=>{
+            arr.push({
+                id: term.id,
+                title:term.name,
+                start:new Date(term.date.substring(0,4),term.date.substring(5,7)-1,term.date.substring(8,10),
+                    term.time_start.substring(11,13),term.time_start.substring(14,16),0,0),
+                end:new Date(term.date.substring(0,4), term.date.substring(5,7)-1, term.date.substring(8,10),
+                    term.time_end.substring(11,13),term.time_end.substring(14,16),0,0)
+            })
+        });
+        setEvents(arr);
     }
 
     useEffect(() => {
@@ -52,6 +66,7 @@ const Schedule = ()=>{
                 ))}
             </tbody>
         </table>
+        <MyCalendar events={events}></MyCalendar>
     </div>
     )
 
