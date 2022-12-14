@@ -7,16 +7,30 @@ import axios from "axios";
 const ListTerms = (props) => {
     const [error, setError] = useState(false);
 
-    const registerTerm = async function(props){
+
+    const registerTerm = async function(id){
         const response = await axios.post("https://wis2back.herokuapp.com/term_registrations",
         {
             term:{
-                id: props,
+                id: id,
             }
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true}
         ).catch((error) => {
             setError(true);
+        })
+        .then((res)=>{
+            if(res.data.message === "creating registration"){
+                let arr = [...props.terms]
+                arr.forEach((term)=>{
+                    if(term.id === id){
+                        
+                        term.count++;
+                        term.registered = true;
+                    }
+                })
+                props.setTerms(arr);
+            }
         })
     
     }
@@ -39,7 +53,8 @@ const ListTerms = (props) => {
                             <td>{term.time_start.substring(11,16)}</td>
                             <td>{term.time_end.substring(11,16)}</td>
                             <td>{term.count}/{term.limit}</td>
-                            <td><button onClick={() => registerTerm(term.id)}>Přihlásit se</button></td>
+                            <td>{term.registered?"Registered":""}</td>
+                            <td><button disabled={term.registered} onClick={() => registerTerm(term.id)}>Přihlásit se</button></td>
                         </tr>
                     ))}
                 </tbody>

@@ -20,6 +20,11 @@ table button{
     padding: 5px;
 }
 
+table button:disabled{
+    opacity: 0.5;
+    cursor:default;
+}
+
 h1{
     background-color: #4A4A4A;
     opacity: 0.9;

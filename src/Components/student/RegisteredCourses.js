@@ -10,12 +10,18 @@ import Details from "./course/Details";
 
 const RegisteredCourses = ()=>{
     const navigate = useNavigate();
+    const [terms, setTerms] = useState([]);
     const [courses, setCourses] = useState([]);
     const [showTermsActive, setShowTermsActive] = useState(false);
     const [showDetailsActive, setShowDetailsActive] = useState(false);
     const [curCourse, setCurCourse] = useState(null);
     const [termsFromSelectedCourse, setTermsFromSelectedCourse] = useState(null);
 
+
+    const getTerms = async function() {
+        const response = await axios.get("https://wis2back.herokuapp.com/term_registrations",{headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
+        setTerms(response.data.terms);
+    }
 
     const unregisterCourse = async function(props) {
         const response = await axios.post("https://wis2back.herokuapp.com/delete_course_registrations",
@@ -35,6 +41,7 @@ const RegisteredCourses = ()=>{
     }
     useEffect(() => {
         getCourses();
+        getTerms();
     }, [])
 
     const showTerms = async function(props){
@@ -46,8 +53,15 @@ const RegisteredCourses = ()=>{
         },
         {headers:{'authorization': localStorage.getItem("token")},withCredentials:true})
         const data = response.data;
+        data.forEach((term)=>{
+            term.registered =false;
+            terms.forEach((rterm)=>{
+                if(rterm.id === term.id){
+                    term.registered = true;
+                }
+            })
+        })
         setTermsFromSelectedCourse(data);
-
         setShowTermsActive(true);
     }
 
@@ -78,7 +92,7 @@ const RegisteredCourses = ()=>{
                 </tbody>
             </table>
             <Modal active={showTermsActive} setActive={setShowTermsActive}>
-                <ListTerms terms={termsFromSelectedCourse}></ListTerms>
+                <ListTerms terms={termsFromSelectedCourse} setTerms={setTermsFromSelectedCourse}></ListTerms>
             </Modal>
             <Modal active={showDetailsActive} setActive={setShowDetailsActive}>
                 <Details course={curCourse}></Details>
